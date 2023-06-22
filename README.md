@@ -73,4 +73,4 @@
 <br /><br />
 
 ---
-[![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fgoorm-fullstack%2FIntroduce-3355&count_bg=%23888888&title_bg=%23888888&icon=ghostery.svg&icon_color=%23E7E7E7&title=hits&edge_flat=false)](https://hits.seeyoufarm.com)
+[![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fgoorm-fullstack%2FIntroduce-3355&count_bg=%23aaaaaa&title_bg=%23aaaaaa&icon=ghostery.svg&icon_color=%23E7E7E7&title=hits&edge_flat=false)](https://hits.seeyoufarm.com)
