@@ -3,9 +3,11 @@
 
 🖥 [바로가기(Web)](https://goorm-fullstack.github.io/Introduce-3355/) / 📱 바로가기(App)
 
+
 ## 🔍 프로젝트 개요
 - 개발 목적: CRUD 실습, 협업 경험 쌓기
 - 개발 기간: 2023.06.28~2023.06.30
+
 
 ## 😎 조원 소개
 
@@ -15,41 +17,44 @@
 | [@WhiteKIM](https://github.com/WhiteKIM) | [@soheetech](https://github.com/soheetech) | [@JinhwanB](https://github.com/JinhwanB) | [@location132](https://github.com/location132) |
 | 조원 | 조원 | 조장 | 조원 |
 
+
 ## 💻 개발 환경
 
+
 ### Front-End
-<img  src="https://img.shields.io/badge/html5-E34F26?style=for-the-badge&logo=html5&logoColor=white">
-<img  src="https://img.shields.io/badge/css-1572B6?style=for-the-badge&logo=css3&logoColor=white">
-<img  src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black">
+<img  src="https://img.shields.io/badge/html5-E34F26?style=for-the-badge&logo=html5&logoColor=white"> <img  src="https://img.shields.io/badge/css-1572B6?style=for-the-badge&logo=css3&logoColor=white"> <img  src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black">
+
 
 ### Back-End
-<img  src="https://img.shields.io/badge/java 17-007396?style=for-the-badge&logo=java&logoColor=white">
-<img  src="https://img.shields.io/badge/spring 3.1.0-6DB33F?style=for-the-badge&logo=spring&logoColor=white">
+<img  src="https://img.shields.io/badge/java 17-007396?style=for-the-badge&logo=java&logoColor=white"> <img  src="https://img.shields.io/badge/spring 3.1.0-6DB33F?style=for-the-badge&logo=spring&logoColor=white">
+
 
 ### APP
 추가 예정
 
+
 ### DB
 <img  src="https://img.shields.io/badge/firebase-FFCA28?style=for-the-badge&logo=firebase&logoColor=white">
 
+
 ### Collaboration
-<img  src="https://img.shields.io/badge/Notion-000000?style=for-the-badge&logo=Notion&logoColor=white">
-<img  src="https://img.shields.io/badge/Discord-5865F2?style=for-the-badge&logo=Discord&logoColor=white">
-<img  src="https://img.shields.io/badge/Slack-4A154B?style=for-the-badge&logo=Slack&logoColor=white">
-<img  src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white">
+<img  src="https://img.shields.io/badge/Notion-000000?style=for-the-badge&logo=Notion&logoColor=white"> <img  src="https://img.shields.io/badge/Discord-5865F2?style=for-the-badge&logo=Discord&logoColor=white"> <img  src="https://img.shields.io/badge/Slack-4A154B?style=for-the-badge&logo=Slack&logoColor=white"> <img  src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white">
 
 
 ## 📝 화면 구성
 추가 예정
 
+
 ## ✨ 주요 기능
 추가 예정
+
 
 ## 📁 아키텍쳐
 
 ```
 디렉토리 구조 추가 예정
 ```
+
 
 ## 📌 특이사항
 - 변경/수정이 있는 경우 주석 또는 커밋 메시지 작성하기
