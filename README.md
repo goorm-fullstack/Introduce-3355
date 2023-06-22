@@ -1,6 +1,6 @@
 # 3조 삼삼오오(三三五五)
 ☁ 구름(goorm) 풀스택 개발자 성장 과정 1차 스터디 3️⃣조 삼삼오오를 소개합니다.
-<br />
+<br /><br />
 
 🖥 [바로가기(Web)](https://goorm-fullstack.github.io/Introduce-3355/) / 📱 바로가기(App)
 
