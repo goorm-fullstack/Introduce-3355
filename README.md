@@ -69,8 +69,3 @@
 ## 📌 특이사항
 - 변경/수정이 있는 경우 주석 또는 커밋 메시지 작성하기
 - 그 외 프로젝트 관련 추가 전달 사항은 노션 페이지 프로젝트란에 기록하기
-
-<br /><br />
-
----
-[![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fgoorm-fullstack%2FIntroduce-3355&count_bg=%23aaaaaa&title_bg=%23aaaaaa&icon=ghostery.svg&icon_color=%23E7E7E7&title=hits&edge_flat=false)](https://hits.seeyoufarm.com)
