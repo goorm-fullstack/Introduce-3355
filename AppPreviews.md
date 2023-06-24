@@ -6,7 +6,7 @@
 ## 💻 개발 환경
 - **개발 기간:** 2023.06.30(총 1일)
 - **운영 체제:** iOS 0.0 이상(추후 수정)
-- **사용 기술**
+- **사용 기술**   
 <img src="https://img.shields.io/badge/Dart-0175C2?style=for-the-badge&logo=Dart&logoColor=white"> <img src="https://img.shields.io/badge/flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white"> <img src="https://img.shields.io/badge/firebase-FFCA28?style=for-the-badge&logo=firebase&logoColor=white">
 
 <br />
