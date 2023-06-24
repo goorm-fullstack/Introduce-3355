@@ -12,18 +12,23 @@ import org.springframework.stereotype.Service;
 
 import java.util.concurrent.ExecutionException;
 
+/**
+ * 파이어베이스 방명록 기능 구현부
+ */
 @Service
 public class FirebaseCommentServiceImpl implements FirebaseCommentService {
+    // 생성한 방명록을 DB에 저장
     @Override
     public void insertComment(Comment comment) {
         Firestore firestore = FirestoreClient.getFirestore();
         ApiFuture<WriteResult> apiFuture = firestore.collection("comment").document(String.valueOf(comment.getId())).set(comment);
     }
 
+    // 방명록의 id를 사용해서 DB에서 찾음
     @Override
-    public Comment getComment(int id) throws ExecutionException, InterruptedException {
+    public Comment getComment(String id) throws ExecutionException, InterruptedException {
         Firestore firestore = FirestoreClient.getFirestore();
-        DocumentReference documentReference = firestore.collection("comment").document(String.valueOf(id));
+        DocumentReference documentReference = firestore.collection("comment").document(id);
         ApiFuture<DocumentSnapshot> apiFuture = documentReference.get();
         DocumentSnapshot documentSnapshot = apiFuture.get();
 
@@ -34,5 +39,21 @@ public class FirebaseCommentServiceImpl implements FirebaseCommentService {
         } else {
             return null;
         }
+    }
+
+    // 방명록을 업데이트하는 경우에 사용
+    @Override
+    public void updateComment(Comment comment) {
+        Firestore firestore = FirestoreClient.getFirestore();
+        ApiFuture<WriteResult> apiFuture = firestore.collection("comment").document(comment.getId())
+                .set(comment);
+    }
+
+    // 방명록을 제거하는 함수
+    @Override
+    public void deleteComment(String id) {
+        Firestore firestore = FirestoreClient.getFirestore();
+        ApiFuture<WriteResult> apiFuture = firestore.collection("comment")
+                .document(id).delete();
     }
 }

@@ -5,6 +5,7 @@ build/
 !**/src/main/**/build/
 !**/src/test/**/build/
 !**/src/main/resources/Key/
+testKey.json
 
 ### STS ###
 .apt_generated

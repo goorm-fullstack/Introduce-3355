@@ -9,14 +9,13 @@ import java.util.*;
  */
 @Repository
 public class UserRepository {
-    private static Map<Integer, User> data = new HashMap<>();
-    private static int sequence = 0;
+    private static Map<String, User> data = new HashMap<>();
 
     public void save(User user) {
-        user.setId(++sequence);
+        user.setId("test");
         data.put(user.getId(), user);
     }
-    public User findById(int id) {
+    public User findById(String id) {
         return data.get(id);
     }
     public User findByUsernameAndPassword(String username, String password) {

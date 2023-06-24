@@ -11,7 +11,7 @@ import lombok.Data;
  */
 @Data
 public class Comment {
-    private int id;
+    private String id;
     private String username;
     private String password;
     private String content;

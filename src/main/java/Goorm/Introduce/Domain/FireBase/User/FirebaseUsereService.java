@@ -7,5 +7,7 @@ import java.util.concurrent.ExecutionException;
 
 public interface FirebaseUsereService {
     public void insertUser(User user);
-    public User getUser(int id) throws ExecutionException, InterruptedException;
+    public User getUser(String id) throws ExecutionException, InterruptedException;
+    public void updateUser(User user);
+    public void deleteUser(String id);
 }

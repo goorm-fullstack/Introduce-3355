@@ -11,7 +11,7 @@ import java.util.List;
 @Data
 public class Board {
     // DB에서 관리할 아이디
-    private int id;
+    private String id;
     // 이름
     private String name;
     //역활
