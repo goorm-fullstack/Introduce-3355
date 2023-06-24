@@ -5,8 +5,7 @@
     <title>Title</title>
 </head>
 <body>
-    <div th:if="${session.isEmpty()}" th:insert="~{Fragments/header :: header}"></div>
-    <div th:unless="${session.isEmpty()}" th:insert="~{Fragments/headerAdmin :: header}"></div>
+    <div th:insert="~{Fragments/headerAdmin :: header}"></div>
     <nav>
         <ul>
             <li><a href="/members/1">김경규</a></li>

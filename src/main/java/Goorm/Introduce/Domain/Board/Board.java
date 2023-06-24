@@ -1,10 +1,16 @@
 package Goorm.Introduce.Domain.Board;
 
+import Goorm.Introduce.Domain.Comment.Comment;
 import lombok.Data;
 
+import java.util.List;
+
+/**
+ * 페이지 내용이 담길 객체
+ */
 @Data
 public class Board {
-    // DB에서 관라될 Primary Key
+    // DB에서 관리할 아이디
     private int id;
     // 이름
     private String name;
@@ -17,6 +23,8 @@ public class Board {
     //사용가능 언어
     private String lang;
     //짧은 소개글
-    private String comments;
+    private String shortIntro;
+
+    private List<Comment> comment;
 }
 
