@@ -75,29 +75,4 @@ public class WebController {
 
         return "redirect:/";
     }
-
-    //파이어베이스 연동 확인용 코드입니다.
-    @ResponseBody
-    @GetMapping("/firebase-test")
-    public ResponseEntity<Object> firebaseWebTest() throws ExecutionException, InterruptedException {
-        List<Test> list = firebaseTest();
-        return ResponseEntity.ok().body(list);
-    }
-    private List<Test> firebaseTest() throws ExecutionException, InterruptedException {
-        StringBuilder sb = new StringBuilder();
-        List<Test> list = new ArrayList<>();
-        Firestore db = FirestoreClient.getFirestore();
-        ApiFuture<QuerySnapshot> future = db.collection("test").get();
-        List<QueryDocumentSnapshot> documents = future.get().getDocuments();
-        for(QueryDocumentSnapshot document : documents) {
-            list.add(document.toObject(Test.class));
-        }
-        return list;
-    }
-
-    //파이어베이스 연동 확인용 코드
-    @Data
-    private static class Test{
-        private String message;
-    }
 }
