@@ -2,13 +2,12 @@ package Goorm.Introduce.Domain.FireBase.Board;
 
 import Goorm.Introduce.Domain.Board.Board;
 import com.google.api.core.ApiFuture;
-import com.google.cloud.firestore.DocumentReference;
-import com.google.cloud.firestore.DocumentSnapshot;
-import com.google.cloud.firestore.Firestore;
-import com.google.cloud.firestore.WriteResult;
+import com.google.cloud.firestore.*;
 import com.google.firebase.cloud.FirestoreClient;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 /**
@@ -20,7 +19,9 @@ public class FirebaseBoardServiceImpl implements FirebaseBoardService {
     @Override
     public void insertBoard(Board board) {
         Firestore firestore = FirestoreClient.getFirestore();
-        ApiFuture<WriteResult> apiFuture = firestore.collection("board").document(board.getId()).set(board);
+        String uid = firestore.collection("board").document().getId();
+        board.setId(uid);
+        ApiFuture<WriteResult> apiFuture = firestore.collection("board").document(uid).set(board);
     }
 
     // 게시글의 id를 사용해서 DB에서 게시글을 가져오는 기능
@@ -38,6 +39,22 @@ public class FirebaseBoardServiceImpl implements FirebaseBoardService {
         } else {
             return null;
         }
+    }
+
+    /**
+     * 
+     * @return : 모든 게시글 리스트를 반환
+     */
+    @Override
+    public List<Board> getAllBoard() throws ExecutionException, InterruptedException {
+        List<Board> boardList = new ArrayList<>();
+        Firestore firestore = FirestoreClient.getFirestore();
+        ApiFuture<QuerySnapshot> apiFuture = firestore.collection("board").get();
+        List<QueryDocumentSnapshot> documentSnapshots = apiFuture.get().getDocuments();
+        for(QueryDocumentSnapshot snapshot : documentSnapshots) {
+            boardList.add(snapshot.toObject(Board.class));
+        }
+        return boardList;
     }
 
     // 게시글을 업데이트하는 기능

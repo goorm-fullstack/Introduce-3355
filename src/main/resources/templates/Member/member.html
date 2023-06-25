@@ -16,5 +16,25 @@
         <p>소개글</p>
         <textarea th:text="${board.shortIntro}" readonly/>
     </div>
+    <span>방명록</span>
+    <div>
+        <div th:each="comment : ${comments}">
+            <span>사용자명</span><p th:text="${comment.username}"></p>
+            <span>내용</span><p th:text="${comment.content}"></p>
+        </div>
+    </div>
+    <span>방명록 입력</span>
+    <div>
+        <form action="/comment" method="post">
+            <input type="hidden" id="boardId" name="boardId" th:value="${board.id}"/>
+            <label for="username">아이디</label>
+            <input type="text" id="username" name="username"/>
+            <label for="password">비밀번호</label>
+            <input id="password" name="password" type="password"/>
+            <label for="content">방명록</label>
+            <textarea id="content" name="content"></textarea>
+            <button type="submit">저장</button>
+        </form>
+    </div>
 </body>
 </html>

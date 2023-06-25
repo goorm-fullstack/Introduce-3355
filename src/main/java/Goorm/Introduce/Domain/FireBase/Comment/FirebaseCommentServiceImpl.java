@@ -3,13 +3,12 @@ package Goorm.Introduce.Domain.FireBase.Comment;
 import Goorm.Introduce.Domain.Board.Board;
 import Goorm.Introduce.Domain.Comment.Comment;
 import com.google.api.core.ApiFuture;
-import com.google.cloud.firestore.DocumentReference;
-import com.google.cloud.firestore.DocumentSnapshot;
-import com.google.cloud.firestore.Firestore;
-import com.google.cloud.firestore.WriteResult;
+import com.google.cloud.firestore.*;
 import com.google.firebase.cloud.FirestoreClient;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 /**
@@ -21,7 +20,9 @@ public class FirebaseCommentServiceImpl implements FirebaseCommentService {
     @Override
     public void insertComment(Comment comment) {
         Firestore firestore = FirestoreClient.getFirestore();
-        ApiFuture<WriteResult> apiFuture = firestore.collection("comment").document(String.valueOf(comment.getId())).set(comment);
+        String uid = firestore.collection("comment").document().getId();
+        comment.setId(uid);
+        ApiFuture<WriteResult> apiFuture = firestore.collection("comment").document(uid).set(comment);
     }
 
     // 방명록의 id를 사용해서 DB에서 찾음
@@ -39,6 +40,25 @@ public class FirebaseCommentServiceImpl implements FirebaseCommentService {
         } else {
             return null;
         }
+    }
+
+    /**
+     * 
+     * @param boardId : 게시글의 아이디로 방명록 댓글을 찾음
+     * @return : 찾아낸 게시글의 방명록 내용
+     */
+    @Override
+    public List<Comment> findByBoardIdComment(String boardId) throws ExecutionException, InterruptedException {
+        List<Comment> commentList = new ArrayList<>();
+        Firestore firestore = FirestoreClient.getFirestore();
+        ApiFuture<QuerySnapshot> apiFuture = firestore.collection("comment").get();
+        List<QueryDocumentSnapshot> documentSnapshots = apiFuture.get().getDocuments();
+        for(QueryDocumentSnapshot snapshot : documentSnapshots) {
+            Comment comment = snapshot.toObject(Comment.class);
+            if(comment.getBoardId().equals(boardId))
+                commentList.add(comment);
+        }
+        return commentList;
     }
 
     // 방명록을 업데이트하는 경우에 사용

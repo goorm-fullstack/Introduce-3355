@@ -22,7 +22,8 @@ public class FirebaseUserServiceImpl implements FirebaseUsereService {
     @Override
     public void insertUser(User user) {
         Firestore firestore = FirestoreClient.getFirestore();
-        ApiFuture<WriteResult> apiFuture = firestore.collection("user").document(String.valueOf(user.getId())).set(user);
+        String uid = firestore.collection("user").document().getId();
+        ApiFuture<WriteResult> apiFuture = firestore.collection("user").document(uid).set(user);
     }
 
     // 어드민의 id정보로 데이터베이스에서 어드민을 가져옴
