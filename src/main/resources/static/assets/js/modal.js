@@ -18,6 +18,7 @@ closeBtn.onclick = function() {
 
 submitBtn.onclick = function() {
     modal.style.display = 'none';
+    location.href="/";
 }
 
 window.onclick = function(event) {
@@ -51,6 +52,7 @@ submitBtn1.onclick = function() {
     httpRequest.setRequestHeader("Content-Type","application/json");
     httpRequest.send(JSON.stringify(data));
     modal1.style.display = 'none';
+    location.href="/";
 }
 
 deleteBtn.onclick = function() {
@@ -63,6 +65,7 @@ deleteBtn.onclick = function() {
     httpRequest.setRequestHeader("Content-Type","application/json");
     httpRequest.send(JSON.stringify(data));
     modal1.style.display = 'none';
+    location.href="/";
 }
 
 window.onclick = function(event) {
