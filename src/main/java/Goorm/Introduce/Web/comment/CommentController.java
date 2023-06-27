@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
@@ -33,22 +34,24 @@ public class CommentController {
     }
 
     @PostMapping("/add")
-    public String addComment(@ModelAttribute Comment comment) {
+    public String addComment(@ModelAttribute Comment comment, Model model) throws ExecutionException, InterruptedException {
         firebaseCommentService.insertComment(comment);
+        model.addAttribute("comments",firebaseCommentService.findAllComment());
         return "redirect:/";
     }
 
     @PutMapping("/update")
-    public String updateComment(@RequestBody Comment comment) {
+    public String updateComment(@RequestBody Comment comment, Model model) throws ExecutionException, InterruptedException {
         firebaseCommentService.updateComment(comment);
+        model.addAttribute("comments",firebaseCommentService.findAllComment());
         return "redirect:/";
     }
 
     @DeleteMapping("/delete")
-    public String deleteComment(@RequestBody Map<String, String> data) {
+    public String deleteComment(@RequestBody Map<String, String> data, Model model) throws ExecutionException, InterruptedException {
         String id = data.get("id");
-        System.out.println(id);
         firebaseCommentService.deleteComment(id, "test");
+        model.addAttribute("comments",firebaseCommentService.findAllComment());
         return "redirect:/";
     }
 }

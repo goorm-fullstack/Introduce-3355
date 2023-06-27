@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-  <th:block th:replace="~{layout/head :: head}"></th:block>
+  <th:block th:replace="~{includes/head :: head}"></th:block>
   <body id="main">
     <div th:replace="~{includes/header :: header}"></div>
     <section class="wrapper"><!-- index contents -->
@@ -19,9 +19,9 @@
             <a href="#" class="btn-to-left type-ico type-block type-circle type-small">왼쪽으로 이동</a>
             <a href="#" class="btn-to-right type-ico type-block type-circle type-small">오른쪽으로 이동</a>
           </div>
-          <ul th:each="comment : ${comments}">
+          <ul>
             <!-- 방명록 list: loop start -->
-            <li>
+            <li th:each="comment : ${comments}">
               <p class="guest-contents" th:text="${comment.content}">방명록 내용 </p>
               <span class="guest-date" th:text="${comment.date}">2023.06.23</span>
               <button class="btn-modify type-ico type-block type-bg-black type-circle" id="update-comment-popup"
@@ -39,36 +39,38 @@
             <!-- 방명록 list: loop end -->
           </ul>
         </div>
-        <div id="editModal">
-          <div id="modalContent">
-            <div id="modalBody">
-              <form action="/comment/add" method="post">
-                <label for="password">비밀번호</label>
-                <input id="password" name="password"/>
-                <label for="content">방명록 내용</label>
-                <textarea id="content" name="content"></textarea>
-                <span id="closeBtn">&times;</span>
-                <button type="submit" id="submitBtn">등록</button>
-              </form>
-            </div>
+      </article>
+      <div id="editModal" class="modal">
+        <div id="modalContent" class="modalContent">
+          <span id="closeBtn">&times;</span>
+          <div id="modalBody" class="modalBody">
+            <form action="/comment/add" method="post">
+              <label for="password">비밀번호</label>
+              <input id="password" name="password"/>
+              <label for="content">방명록 내용</label>
+              <textarea id="content" name="content"></textarea>
+              <button type="submit" id="submitBtn">등록</button>
+            </form>
           </div>
         </div>
-        <div id="updateModal">
-          <div id="updateModalContent">
-            <div id="updateModalBody">
-              <input type="hidden" name="id" id="up_id">
-              <p id="up_date" name="date"></p>
-              <label for="up_password">비밀번호</label>
-              <input id="up_password" name="password"/>
-              <label for="content">방명록 내용</label>
-              <textarea id="up_content" name="content"></textarea>
-              <span id="up_closeBtn">&times;</span>
+      </div>
+      <div id="updateModal" class="modal">
+        <div id="updateModalContent" class="modalContent">
+          <span id="up_closeBtn">&times;</span>
+          <div id="updateModalBody" class="modalBody">
+            <input type="hidden" name="id" id="up_id">
+            <p id="up_date" name="date"></p>
+            <label for="up_password">비밀번호</label>
+            <input id="up_password" name="password"/>
+            <label for="content">방명록 내용</label>
+            <textarea id="up_content" name="content"></textarea>
+            <div class="btnAria">
               <button type="submit" id="updateBtn">수정</button>
               <button type="submit" id="deleteBtn">삭제</button>
             </div>
           </div>
         </div>
-      </article>
+      </div>
       <article><!-- member: 조원 소개 -->
         <p class="title-en">member</p>
         <h3 class="title-ko">조원 소개</h3>
@@ -110,10 +112,6 @@
       </article>
     </section>
     <div th:replace="~{includes/footer :: footer}"></div>
-    <button type="button" onclick="topFunction();" id="btn-to-top" class="btn-more type-ico type-block type-circle type-big type-border displaynone">상단으로 이동</button>
-    <!-- js -->
-    <script src="/assets/js/scroll.js"></script>
-    <script src="/assets/js/guest.js"></script>
-    <script src="/assets/js/modal.js"></script>
+
   </body>
 </html>
