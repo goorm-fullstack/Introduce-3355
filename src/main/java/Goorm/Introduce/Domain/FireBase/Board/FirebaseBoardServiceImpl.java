@@ -42,7 +42,6 @@ public class FirebaseBoardServiceImpl implements FirebaseBoardService {
     }
 
     /**
-     * 
      * @return : 모든 게시글 리스트를 반환
      */
     @Override

@@ -1,20 +1,66 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+<th:block th:replace="~{layout/head :: head}"></th:block>
 <body>
-    <div th:if="${session.isEmpty()}" th:insert="~{Fragments/header :: header}"></div>
-    <div th:unless="${session.isEmpty()}" th:insert="~{Fragments/headerAdmin :: header}"></div>
-    <nav>
-        <ul>
-            <li><a href="/members/1">김경규</a></li>
-            <li><a href="/members/2">배진환</a></li>
-            <li><a href="/members/3">문소희</a></li>
-            <li><a href="/members/4">이정원</a></li>
-        </ul>
-    </nav>
-    <div th:insert="~{Fragments/footer :: footer}"></div>
+    <div th:replace="~{includes/header :: header}"></div>
+    <div>
+        <p>방명록 작성하기</p>
+        <button id="add-comment-popup">작성</button>
+    </div>
+    <div th:each="comment : ${comments}">
+        <div onclick="">조회</div>
+        <button id="update-comment-popup"
+                th:data-id ="${comment.id}"
+                th:data-password="${comment.password}"
+                th:data-content= "${comment.content}"
+                th:data-date ="${comment.date}"
+                th:onclick="openModal(
+                    this.getAttribute('data-id'),
+                    this.getAttribute('data-password'),
+                    this.getAttribute('data-content'),
+                    this.getAttribute('data-date')
+                )"
+        >수정</button>
+        <span th:text="${comment.date}"></span>
+    </div>
+
+     <ul>
+         <li><a href="/members/1">김경규</a></li>
+         <li><a href="/members/2">배진환</a></li>
+         <li><a href="/members/3">문소희</a></li>
+         <li><a href="/members/4">이정원</a></li>
+    </ul>
+    <div th:replace="~{includes/footer :: footer}"></div>
+
+    <div id="editModal">
+        <div id="modalContent">
+            <div id="modalBody">
+                <form action="/comment/add" method="post">
+                    <label for="password">비밀번호</label>
+                    <input id="password" name="password"/>
+                    <label for="content">방명록 내용</label>
+                    <textarea id="content" name="content"></textarea>
+                    <span id="closeBtn">&times;</span>
+                    <button type="submit" id="submitBtn">등록</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div id="updateModal">
+        <div id="updateModalContent">
+            <div id="updateModalBody">
+                <input type="hidden" name="id" id="up_id">
+                <p id="up_date" name="date"></p>
+                <label for="up_password">비밀번호</label>
+                <input id="up_password" name="password"/>
+                <label for="content">방명록 내용</label>
+                <textarea id="up_content" name="content"></textarea>
+                <span id="up_closeBtn">&times;</span>
+                <button type="submit" id="updateBtn">수정</button>
+                <button type="submit" id="deleteBtn">삭제</button>
+            </div>
+        </div>
+    </div>
 </body>
+<script src="/assets/js/modal.js"></script>
 </html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <th:block th:replace="~{layout/head :: head}"></th:block>
+  <body id="main">
+    <div th:replace="~{includes/header :: header}"></div>
+    <section class="wrapper"><!-- index contents -->
+      <article id="about-group"><!-- about: 3조 삼삼오오 -->
+        <p class="title-en">about</p>
+        <h3 class="title-ko">3조 삼삼오오</h3>
+        <p class="text-about contents-full">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas lobortis elementum arcu, pharetra aliquam nulla rhoncus a. Suspendisse potenti. Maecenas lectus arcu, ullamcorper vel enim sit amet, auctor mattis mi. Nunc nec neque ut lacus faucibus blandit. Suspendisse vulputate pharetra justo at euismod. Sed vestibulum urna eu tortor sagittis, in egestas neque venenatis. Curabitur urna odio, aliquet nec sem at, vehicula mattis dui. Etiam id massa massa. Praesent eget lectus dolor. Aliquam enim risus, faucibus eget magna ut, iaculis lobortis massa.</p>
+        <a href="https://github.com/goorm-fullstack/Introduce-3355" target="_blank" class="btn-login type-square type-block type-ico"><i class="fa fa-github"></i>이 프로젝트 GitHub Repository 바로가기</a>
+      </article>
+      <article id="guest-book"><!-- 방명록 -->
+        <div class="guest-write">
+          <h3>방명록<br>작성하기<button class="btn-write type-ico type-block type-bg-black type-circle" id="add-comment-popup">작성하기</button></h3>
+        </div>
+        <div class="guest-list">
+          <div class="guest-btnwrap"><!-- 방명록 슬라이더 버튼 -->
+            <a href="#" class="btn-to-left type-ico type-block type-circle type-small">왼쪽으로 이동</a>
+            <a href="#" class="btn-to-right type-ico type-block type-circle type-small">오른쪽으로 이동</a>
+          </div>
+          <ul th:each="comment : ${comments}">
+            <!-- 방명록 list: loop start -->
+            <li>
+              <p class="guest-contents" th:text="${comment.content}">방명록 내용 </p>
+              <span class="guest-date" th:text="${comment.date}">2023.06.23</span>
+              <button class="btn-modify type-ico type-block type-bg-black type-circle" id="update-comment-popup"
+                 th:data-id ="${comment.id}"
+                 th:data-password="${comment.password}"
+                 th:data-content= "${comment.content}"
+                 th:data-date ="${comment.date}"
+                 th:onclick="openModal(
+                    this.getAttribute('data-id'),
+                    this.getAttribute('data-password'),
+                    this.getAttribute('data-content'),
+                    this.getAttribute('data-date')
+                )">수정</button>
+            </li>
+            <!-- 방명록 list: loop end -->
+          </ul>
+        </div>
+        <div id="editModal">
+          <div id="modalContent">
+            <div id="modalBody">
+              <form action="/comment/add" method="post">
+                <label for="password">비밀번호</label>
+                <input id="password" name="password"/>
+                <label for="content">방명록 내용</label>
+                <textarea id="content" name="content"></textarea>
+                <span id="closeBtn">&times;</span>
+                <button type="submit" id="submitBtn">등록</button>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div id="updateModal">
+          <div id="updateModalContent">
+            <div id="updateModalBody">
+              <input type="hidden" name="id" id="up_id">
+              <p id="up_date" name="date"></p>
+              <label for="up_password">비밀번호</label>
+              <input id="up_password" name="password"/>
+              <label for="content">방명록 내용</label>
+              <textarea id="up_content" name="content"></textarea>
+              <span id="up_closeBtn">&times;</span>
+              <button type="submit" id="updateBtn">수정</button>
+              <button type="submit" id="deleteBtn">삭제</button>
+            </div>
+          </div>
+        </div>
+      </article>
+      <article><!-- member: 조원 소개 -->
+        <p class="title-en">member</p>
+        <h3 class="title-ko">조원 소개</h3>
+        <ul id="member-list">
+          <!-- 조원 목록: loop start-->
+          <li><!-- 여기부터 -->
+            <div class="member-image">
+              <a href="#" class="btn-more type-ico type-block type-circle type-big type-border">자세히 보기</a>
+            </div>
+            <p class="member-name"><a href="#">홍삼이</a></p>
+            <p class="member-position"><span class="">역할</span> / <span>개발 포지션</span></p>
+          </li><!-- 여기까지 조원 정보 등록된 수만큼 반복 -->
+          <li>
+            <div class="member-image">
+              <a href="#" class="btn-more type-ico type-block type-circle type-big type-border">자세히 보기</a>
+            </div>
+            <p class="member-name"><a href="#">홍삼이</a></p>
+            <p class="member-position"><span class="">역할</span> / <span>개발 포지션</span></p>
+          </li>
+          <li>
+            <div class="member-image">
+              <a href="#" class="btn-more type-ico type-block type-circle type-big type-border">자세히 보기</a>
+            </div>
+            <p class="member-name"><a href="#">홍삼이</a></p>
+            <p class="member-position"><span class="">역할</span> / <span>개발 포지션</span></p>
+          </li>
+          <li>
+            <div class="member-image">
+              <a href="#" class="btn-more type-ico type-block type-circle type-big type-border">자세히 보기</a>
+            </div>
+            <p class="member-name"><a href="#">홍삼이</a></p>
+            <p class="member-position"><span class="">역할</span> / <span>개발 포지션</span></p>
+          </li>
+          <!-- 조원 목록: loop end -->
+          <li class="member-add"><!-- 조원 추가 버튼 -->
+            <a href="/member/add" class="btn-add-member type-ico type-block type-circle type-big type-border">조원 추가</a>
+          </li><!-- // 조원 추가 버튼 -->
+        </ul>
+      </article>
+    </section>
+    <div th:replace="~{includes/footer :: footer}"></div>
+    <button type="button" onclick="topFunction();" id="btn-to-top" class="btn-more type-ico type-block type-circle type-big type-border displaynone">상단으로 이동</button>
+    <!-- js -->
+    <script src="/assets/js/scroll.js"></script>
+    <script src="/assets/js/guest.js"></script>
+    <script src="/assets/js/modal.js"></script>
+  </body>
+</html>

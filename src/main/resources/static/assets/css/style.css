@@ -1,0 +1,45 @@
+/* common */
+
+:root {
+  --bg-white: #fff;
+  --bg-sky: #d6f0ef;
+  /* 방명록, 조원 추천서 */
+  --bg-yellow: #fef0d6;
+  --bg-gray: #f1f2f4;
+  /* 원형 버튼 */
+  --border-circle: #ededed;
+  /* 사각형 버튼 */
+  --border-square: #d0d0d0;
+  /* 폰트색 */
+  --color-black: #111;
+  --color-light-black: #444;
+  --color-gray: #888;
+  --color-green: #5d9361;
+  --color-blue: #1d2089;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.displaynone {
+  display: none !important;
+}
+
+html, body { width: 100%; }
+
+body {
+  min-width: 1100px;
+  font-family: 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+  font-size: 16px;
+  line-height: 1.8;
+  letter-spacing: -0.02em;
+  color: var(--color-black);
+}
+
+a {
+  color: var(--color-black);
+  text-decoration: none;
+  transition: .2s ease-in-out;
+}
+

@@ -10,4 +10,5 @@ public interface FirebaseUsereService {
     public User getUser(String id) throws ExecutionException, InterruptedException;
     public void updateUser(User user);
     public void deleteUser(String id);
+    public User login(String username, String password) throws ExecutionException, InterruptedException;
 }

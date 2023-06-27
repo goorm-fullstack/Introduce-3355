@@ -9,7 +9,7 @@ import java.util.concurrent.ExecutionException;
 public interface FirebaseCommentService {
     public void insertComment(Comment comment);
     public Comment getComment(String id) throws ExecutionException, InterruptedException;
-    public List<Comment> findByBoardIdComment(String boardId) throws ExecutionException, InterruptedException;
+    public List<Comment> findAllComment() throws ExecutionException, InterruptedException;
     public void updateComment(Comment comment);
-    public void deleteComment(String id);
+    public void deleteComment(String id, String password);
 }

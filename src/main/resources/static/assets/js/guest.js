@@ -1,0 +1,1 @@
+/* index guest book slider */
