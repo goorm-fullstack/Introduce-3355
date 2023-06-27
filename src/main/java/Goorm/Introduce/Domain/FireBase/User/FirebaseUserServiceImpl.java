@@ -3,10 +3,7 @@ package Goorm.Introduce.Domain.FireBase.User;
 import Goorm.Introduce.Domain.Board.Board;
 import Goorm.Introduce.Domain.User.User;
 import com.google.api.core.ApiFuture;
-import com.google.cloud.firestore.DocumentReference;
-import com.google.cloud.firestore.DocumentSnapshot;
-import com.google.cloud.firestore.Firestore;
-import com.google.cloud.firestore.WriteResult;
+import com.google.cloud.firestore.*;
 import com.google.firebase.cloud.FirestoreClient;
 import org.springframework.stereotype.Service;
 
@@ -55,7 +52,25 @@ public class FirebaseUserServiceImpl implements FirebaseUsereService {
     @Override
     public void deleteUser(String id) {
         Firestore firestore = FirestoreClient.getFirestore();
-        ApiFuture<WriteResult> apiFuture = firestore.collection("comment")
+        ApiFuture<WriteResult> apiFuture = firestore.collection("user")
                 .document(id).delete();
+    }
+
+    /**
+     *
+     * @param username @param password
+     * @return : 로그인 유저 전달
+     */
+    @Override
+    public User login(String username, String password) throws ExecutionException, InterruptedException {
+        Firestore firestore = FirestoreClient.getFirestore();
+        ApiFuture<QuerySnapshot> apiFuture = firestore.collection("user").whereEqualTo("username", username).get();
+        QuerySnapshot snapshot = apiFuture.get();
+        DocumentSnapshot temp = snapshot.getDocuments().get(0);
+        User loginUser = null;
+        if(temp.exists()) {
+            loginUser = temp.toObject(User.class);
+        }
+        return loginUser;
     }
 }

@@ -5,9 +5,11 @@ import Goorm.Introduce.Domain.Comment.Comment;
 import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.*;
 import com.google.firebase.cloud.FirestoreClient;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
@@ -19,9 +21,11 @@ public class FirebaseCommentServiceImpl implements FirebaseCommentService {
     // 생성한 방명록을 DB에 저장
     @Override
     public void insertComment(Comment comment) {
+        Date date = new Date();
         Firestore firestore = FirestoreClient.getFirestore();
         String uid = firestore.collection("comment").document().getId();
         comment.setId(uid);
+        comment.setDate(date.toString());
         ApiFuture<WriteResult> apiFuture = firestore.collection("comment").document(uid).set(comment);
     }
 
@@ -43,20 +47,17 @@ public class FirebaseCommentServiceImpl implements FirebaseCommentService {
     }
 
     /**
-     * 
-     * @param boardId : 게시글의 아이디로 방명록 댓글을 찾음
-     * @return : 찾아낸 게시글의 방명록 내용
+     *
+     * @return : 등록된 모든 방명록을 반환함
      */
     @Override
-    public List<Comment> findByBoardIdComment(String boardId) throws ExecutionException, InterruptedException {
+    public List<Comment> findAllComment() throws ExecutionException, InterruptedException {
         List<Comment> commentList = new ArrayList<>();
         Firestore firestore = FirestoreClient.getFirestore();
         ApiFuture<QuerySnapshot> apiFuture = firestore.collection("comment").get();
         List<QueryDocumentSnapshot> documentSnapshots = apiFuture.get().getDocuments();
         for(QueryDocumentSnapshot snapshot : documentSnapshots) {
-            Comment comment = snapshot.toObject(Comment.class);
-            if(comment.getBoardId().equals(boardId))
-                commentList.add(comment);
+            commentList.add(snapshot.toObject(Comment.class));
         }
         return commentList;
     }
@@ -71,7 +72,7 @@ public class FirebaseCommentServiceImpl implements FirebaseCommentService {
 
     // 방명록을 제거하는 함수
     @Override
-    public void deleteComment(String id) {
+    public void deleteComment(String id, String password) {
         Firestore firestore = FirestoreClient.getFirestore();
         ApiFuture<WriteResult> apiFuture = firestore.collection("comment")
                 .document(id).delete();

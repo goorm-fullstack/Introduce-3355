@@ -1,0 +1,27 @@
+<!--공통적으로 사용되는 CSS나 JS는 이쪽에다가 추가해주세요-->
+<!DOCTYPE>
+<html xmlns:th="http://www.thymeleaf.org">
+    <th:block th:fragment="head">
+        <head>
+            <!-- meta -->
+            <meta charset="utf-8">
+            <meta http-equiv="x-ua-compatible" content="ie=edge">
+            <!-- font -->
+            <link rel="preconnect" href="https://fonts.googleapis.com">
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+            <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+            <!-- favicon -->
+            <link rel="icon" th:href="@{/assets/images/favicon.ico}">
+            <!-- css -->
+            <link rel="stylesheet" th:href="@{/assets/css/reset.css}">
+            <link rel="stylesheet" th:href="@{/assets/css/style.css}">
+            <link rel="stylesheet" th:href="@{/assets/css/button.css}">
+            <link rel="stylesheet" th:href="@{assets/css/layout.css}">
+            <link rel="stylesheet" th:href="@{/assets/css/main.css}">
+            <link rel="stylesheet" th:href="@{/assets/css/modal.css}">
+            <link rel="stylesheet" th:href="@{/assets/css/layout.css}">
+            <link rel="stylesheet" th:href="@{/assets/css/main.css}">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        </head>
+    </th:block>
+</html>

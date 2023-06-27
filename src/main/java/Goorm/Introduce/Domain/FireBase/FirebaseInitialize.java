@@ -23,7 +23,6 @@ public class FirebaseInitialize {
     @PostConstruct
     public void initialize() throws IOException {
         Resource resource = resourceLoader.getResource("classpath:/Key/testKey.json");
-        System.out.println(resource.getURI().getPath());
         try {
             FileInputStream input = new FileInputStream(resource.getURI().getPath());
             FirebaseOptions options = new FirebaseOptions.Builder()

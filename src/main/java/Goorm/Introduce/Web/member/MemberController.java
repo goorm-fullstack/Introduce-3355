@@ -8,9 +8,7 @@ import Goorm.Introduce.Domain.FireBase.Comment.FirebaseCommentServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.concurrent.ExecutionException;
@@ -23,14 +21,17 @@ import java.util.concurrent.ExecutionException;
 @RequiredArgsConstructor
 public class MemberController {
     private final FirebaseBoardServiceImpl firebaseBoardService;
-    private final FirebaseCommentServiceImpl firebaseCommentService;
 
     @GetMapping("/{id}")
     public String introduce(@PathVariable String id, Model model) throws ExecutionException, InterruptedException {
         Board board = firebaseBoardService.getBoard(id);
-        List<Comment> commentList = firebaseCommentService.findByBoardIdComment(id);
         model.addAttribute("board", board);
-        model.addAttribute("comments", commentList);
+        return "Member/member";
+    }
+
+    @ResponseBody
+    @GetMapping("/add")
+    public String addForm() {
         return "Member/member";
     }
 
