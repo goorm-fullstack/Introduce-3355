@@ -144,6 +144,8 @@ header .header-contents {
   text-indent: -999px;
   overflow: hidden;
   margin: 0 auto;
+  position: relative;
+  z-index: 2;
 }
 
 .header .btn-admin {
@@ -177,16 +179,18 @@ header .hero, header .btn-scroll {
 #main header .btn-scroll {
   display: block;
   position: absolute;
-  width: 50px;
+  width: 70px;
   height: 120px;
+  padding-bottom: 78px;
   bottom: -138px;
   left: 50%;
-  margin-left: -25px;
+  margin-left: -35px;
   text-align: center;
   font-weight: bold;
   background: url('../images/btn_scroll.png') no-repeat center bottom;
   animation: scrollmove 1s ease-in-out infinite;
   z-index: 1;
+  border: 0;
 }
 
 @keyframes scrollmove {

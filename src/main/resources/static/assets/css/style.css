@@ -18,6 +18,10 @@
   --color-blue: #1d2089;
 }
 
+::selection {
+  background-color: var(--bg-sky);
+}
+
 * {
   box-sizing: border-box;
 }
@@ -40,6 +44,103 @@ body {
 a {
   color: var(--color-black);
   text-decoration: none;
+}
+
+a, button {
   transition: .2s ease-in-out;
 }
 
+input, textarea {
+  font-family: 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+  border-color: var(--border-square);
+  font-size: 16px;
+  border-radius: 4px;
+}
+
+textarea {
+  padding: 20px;
+  resize: none;
+  max-width: 100%;
+}
+
+input {
+  border-width: 1px;
+  border-style: solid;
+}
+
+/* 서브 페이지 index로 이동 영역 */
+.prev-wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+.prev-wrapper .move-back {
+  display: flex;
+}
+.prev-wrapper h3 {
+  font-size: 24px;
+  font-weight: bold;
+  padding-left: 28px;
+  letter-spacing: -0.02em;;
+}
+
+
+
+/* 멤버 정보란 */
+.member-box {
+  margin-top: 120px;
+  position: relative;
+}
+
+/* 멤버 프로필 */
+.member-box .member-profile {
+  position: relative;
+  margin: 0 auto 40px;
+  width: 350px;
+  height: 350px;
+  border-radius: 50%;
+  border: 7px solid #ededed;
+  overflow: hidden;
+}
+
+/* 프로필 사진 */
+.member-box .profile-img {
+  object-fit: cover;
+  box-sizing: border-box;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* 깃허브 이동 버튼 */
+.member-box .member-github {
+  position: relative;
+}
+.member-box .member-github a, 
+.member-github.modify-git {
+  width: 80px;
+  height: 80px;
+  position: absolute;
+  bottom: 60px;
+  left: 50%;
+  margin-left: 87px;
+  border: 7px solid #ededed;
+  border-radius: 50%;
+  background-color: white;
+  text-align: center;
+  line-height: 80px;
+}
+.member-box .member-github a:hover, 
+.member-github.modify-git:hover {
+  border-style: dashed;
+}
+
+.member-box .member-github a i, 
+.member-github.modify-git i {
+  font-size:36px;
+}
+
+.member-github.modify-git {
+  bottom: 30px;
+  cursor: pointer;
+}

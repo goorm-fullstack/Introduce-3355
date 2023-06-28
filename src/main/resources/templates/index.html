@@ -7,70 +7,41 @@
       <article id="about-group"><!-- about: 3조 삼삼오오 -->
         <p class="title-en">about</p>
         <h3 class="title-ko">3조 삼삼오오</h3>
-        <p class="text-about contents-full">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas lobortis elementum arcu, pharetra aliquam nulla rhoncus a. Suspendisse potenti. Maecenas lectus arcu, ullamcorper vel enim sit amet, auctor mattis mi. Nunc nec neque ut lacus faucibus blandit. Suspendisse vulputate pharetra justo at euismod. Sed vestibulum urna eu tortor sagittis, in egestas neque venenatis. Curabitur urna odio, aliquet nec sem at, vehicula mattis dui. Etiam id massa massa. Praesent eget lectus dolor. Aliquam enim risus, faucibus eget magna ut, iaculis lobortis massa.</p>
+        <p class="text-about contents-full">
+          >&nbsp;&nbsp;구름톤(goormthon) 트레이닝 풀스택 개발자 성장 과정 1회차 1차 스터디를 함께하는 3조 삼삼오오를 소개합니다. 저희 조는 다양한 분야를 공부하는 조원들이 삼삼오오 모여 각자의 분야에서 전문가가 되겠다는 공동의 목표 아래 초석을 잘 다지기 위한 학습 스터디를 진행했습니다. 이 프로젝트는 얼마 남지 않은 1차 스터디 기간(2023.05.23~2023.06.30)을 잘 마무리하기 위하여 그동안 학습한 내용을 적용해 학업 성취도를 점검하고 협업 경험을 쌓아 소프트 스킬을 향상하고자 진행되었습니다. 이 프로젝트와 관련한 자세한 사항은 아래 GitHub Repository 바로가기 버튼을 눌러 확인할 수 있습니다. 길다면 길고 짧다면 짧을 6개월간의 여정을 잘 끝마치고 각자의 목표를 이룰 수 있도록 3조 구성원들에게 많은 응원 부탁드립니다.
+        </p>
         <a href="https://github.com/goorm-fullstack/Introduce-3355" target="_blank" class="btn-login type-square type-block type-ico"><i class="fa fa-github"></i>이 프로젝트 GitHub Repository 바로가기</a>
       </article>
       <article id="guest-book"><!-- 방명록 -->
         <div class="guest-write">
-          <h3>방명록<br>작성하기<button class="btn-write type-ico type-block type-bg-black type-circle" id="add-comment-popup">작성하기</button></h3>
+          <h3>방명록<br>작성하기<button type="button" onclick="guestWrite();" class="btn-write type-ico type-block type-bg-black type-circle">작성하기</button></h3>
         </div>
         <div class="guest-list">
           <div class="guest-btnwrap"><!-- 방명록 슬라이더 버튼 -->
-            <a href="#" class="btn-to-left type-ico type-block type-circle type-small">왼쪽으로 이동</a>
-            <a href="#" class="btn-to-right type-ico type-block type-circle type-small">오른쪽으로 이동</a>
+            <button type="button" onclick="guestPrev();" id="guest-prev" class="btn-to-left type-ico type-block type-circle type-small">왼쪽으로 이동</button>
+            <button type="button" onclick="guestNext();" id="guest-next" class="btn-to-right type-ico type-block type-circle type-small">오른쪽으로 이동</button>
           </div>
-          <ul>
-            <!-- 방명록 list: loop start -->
-            <li th:each="comment : ${comments}">
-              <p class="guest-contents" th:text="${comment.content}">방명록 내용 </p>
-              <span class="guest-date" th:text="${comment.date}">2023.06.23</span>
-              <button class="btn-modify type-ico type-block type-bg-black type-circle" id="update-comment-popup"
-                 th:data-id ="${comment.id}"
-                 th:data-password="${comment.password}"
-                 th:data-content= "${comment.content}"
-                 th:data-date ="${comment.date}"
-                 th:onclick="openModal(
+          <div id="guest-list-wrapper">
+            <ul>
+              <!-- 방명록 list: loop start -->
+              <li th:each="comment : ${comments}">
+                <p class="guest-contents" th:text="${comment.content}">방명록 내용 </p>
+                <span class="guest-date" th:text="${comment.date}">2023.06.23</span>
+                <button type="button" th:data-id ="${comment.id}"
+                      th:data-content= "${comment.content}"
+                      th:data-date ="${comment.date}"
+                      th:onclick="guestModify(
                     this.getAttribute('data-id'),
-                    this.getAttribute('data-password'),
                     this.getAttribute('data-content'),
-                    this.getAttribute('data-date')
-                )">수정</button>
-            </li>
+                    this.getAttribute('data-date'));"
+                      class="btn-modify type-ico type-block type-bg-black type-circle">수정</button>
+                <button type="button" th:data-id ="${comment.id}" th:onclick="guestDelete(this.getAttribute('data-id'));" class="btn-delete type-transparent type-ico type-circle">삭제</button>
+              </li>
             <!-- 방명록 list: loop end -->
-          </ul>
+            </ul>
+          </div>
         </div>
       </article>
-      <div id="editModal" class="modal">
-        <div id="modalContent" class="modalContent">
-          <span id="closeBtn">&times;</span>
-          <div id="modalBody" class="modalBody">
-            <form action="/comment/add" method="post">
-              <label for="password">비밀번호</label>
-              <input id="password" name="password"/>
-              <label for="content">방명록 내용</label>
-              <textarea id="content" name="content"></textarea>
-              <button type="submit" id="submitBtn">등록</button>
-            </form>
-          </div>
-        </div>
-      </div>
-      <div id="updateModal" class="modal">
-        <div id="updateModalContent" class="modalContent">
-          <span id="up_closeBtn">&times;</span>
-          <div id="updateModalBody" class="modalBody">
-            <input type="hidden" name="id" id="up_id">
-            <p id="up_date" name="date"></p>
-            <label for="up_password">비밀번호</label>
-            <input id="up_password" name="password"/>
-            <label for="content">방명록 내용</label>
-            <textarea id="up_content" name="content"></textarea>
-            <div class="btnAria">
-              <button type="submit" id="updateBtn">수정</button>
-              <button type="submit" id="deleteBtn">삭제</button>
-            </div>
-          </div>
-        </div>
-      </div>
       <article><!-- member: 조원 소개 -->
         <p class="title-en">member</p>
         <h3 class="title-ko">조원 소개</h3>
@@ -82,36 +53,14 @@
             </div>
             <p class="member-name"><a href="#">홍삼이</a></p>
             <p class="member-position"><span class="">역할</span> / <span>개발 포지션</span></p>
-          </li><!-- 여기까지 조원 정보 등록된 수만큼 반복 -->
-          <li>
-            <div class="member-image">
-              <a href="#" class="btn-more type-ico type-block type-circle type-big type-border">자세히 보기</a>
-            </div>
-            <p class="member-name"><a href="#">홍삼이</a></p>
-            <p class="member-position"><span class="">역할</span> / <span>개발 포지션</span></p>
-          </li>
-          <li>
-            <div class="member-image">
-              <a href="#" class="btn-more type-ico type-block type-circle type-big type-border">자세히 보기</a>
-            </div>
-            <p class="member-name"><a href="#">홍삼이</a></p>
-            <p class="member-position"><span class="">역할</span> / <span>개발 포지션</span></p>
-          </li>
-          <li>
-            <div class="member-image">
-              <a href="#" class="btn-more type-ico type-block type-circle type-big type-border">자세히 보기</a>
-            </div>
-            <p class="member-name"><a href="#">홍삼이</a></p>
-            <p class="member-position"><span class="">역할</span> / <span>개발 포지션</span></p>
           </li>
           <!-- 조원 목록: loop end -->
           <li class="member-add"><!-- 조원 추가 버튼 -->
-            <a href="/member/add" class="btn-add-member type-ico type-block type-circle type-big type-border">조원 추가</a>
+            <a href="#" class="btn-add-member type-ico type-block type-circle type-big type-border">조원 추가</a>
           </li><!-- // 조원 추가 버튼 -->
         </ul>
       </article>
     </section>
     <div th:replace="~{includes/footer :: footer}"></div>
-
   </body>
 </html>

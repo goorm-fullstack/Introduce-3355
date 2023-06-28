@@ -60,7 +60,6 @@ public class WebController {
         }
 
         User loginUser = firebaseUserService.login(user.getUsername(), user.getPassword());
-        System.out.println(loginUser.toString());
 
         if(loginUser == null) {
             bindingResult.reject("로그인 실패", "아이디 또는 비밀번확 맞지 않습니다");

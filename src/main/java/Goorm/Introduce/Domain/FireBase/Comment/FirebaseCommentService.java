@@ -11,5 +11,5 @@ public interface FirebaseCommentService {
     public Comment getComment(String id) throws ExecutionException, InterruptedException;
     public List<Comment> findAllComment() throws ExecutionException, InterruptedException;
     public void updateComment(Comment comment);
-    public void deleteComment(String id, String password);
+    public void deleteComment(String id);
 }

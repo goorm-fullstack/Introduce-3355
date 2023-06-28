@@ -1,3 +1,4 @@
+// 일단은 사용하지 않는 스크립트입니다.
 const btn = document.getElementById('add-comment-popup');
 const modal = document.getElementById('editModal');
 const closeBtn = document.getElementById('closeBtn');
@@ -20,7 +21,6 @@ submitBtn.onclick = function() {
     modal.style.display = 'none';
     location.href="/";
 }
-
 window.onclick = function(event) {
   if (event.target == modal) {
     modal.style.display = "none";
