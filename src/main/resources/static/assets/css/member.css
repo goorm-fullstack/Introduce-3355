@@ -1,0 +1,187 @@
+/* member.css */
+
+/* 깃허브 말풍선 효과 */
+.member-box .arrow-box {
+  position: absolute;
+  width: 100px;
+  padding: 8px;
+  left: 50%;
+  bottom: 135px;
+  border-radius: 8px;
+  background: #333;
+  color: var(--bg-white);
+  font-size: 14px;
+  opacity: 0;
+  transition: 0.3s ease-in-out;
+  text-align: center;
+  letter-spacing: 0;
+  margin-left: 75px;
+}
+.member-box .arrow-box:after {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  margin-left: -10px;
+  border: solid transparent;
+  border-color: rgba(51, 51, 51, 0);
+  border-bottom-color: #333;
+  border-width: 10px;
+  pointer-events: none;
+  content: '';
+  transform: rotate(180deg);
+}
+.member-box a:hover + .arrow-box {
+  opacity: 1;
+}
+
+/* 역할과 포지션 란 */
+#role-position {
+  font-size: 24px;
+  color: var(--border-square);
+  text-align: center;
+}
+
+/* 자기 소개란 */
+.short-intro-box {
+  word-break: break-all;
+  margin-top: 80px;
+  font-size: 16px;
+}
+.short-intro-box h4 {
+  font-size: 36px;
+  font-weight: bold;
+  margin-bottom: 40px;
+}
+/* 자기소개 내용 */
+.short-intro-box p {
+  line-height: 2;
+}
+
+.short-intro-box,
+.lang-box {
+  text-align: left;
+  margin-bottom: 100px;
+}
+
+/* 사용 언어란 */
+.lang-box p {
+  font-size: 36px;
+  font-weight: bold;
+  margin-bottom: 40px;
+}
+/* 언어 이미지 박스 */
+.lang-box .lang-icons {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+/* 언어 이미지 */
+.lang-box img {
+  width: 150px;
+  height: 150px;
+}
+
+/* 피드백란 */
+.feedback-box {
+  margin-bottom: 120px;
+}
+/* 피드백 상단 */
+.feedback-box .top {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.top h4 {
+  font-size: 36px;
+  font-weight: bold;
+  line-height: 50px;
+  letter-spacing: -0.04em;
+}
+
+/* 프로필 border */
+.feedbacks .profile-border {
+  width: 120px;
+  height: 120px;
+  border: 7px solid var(--border-square);
+  border-radius: 50%;
+  position: relative;
+  overflow: hidden;
+  background-color: var(--bg-white);
+}
+/* 역할과 이름 */
+.feedbacks .role-name {
+  font-size: 18px;
+  font-weight: bold;
+}
+/* 날짜 */
+.feedbacks .date {
+  font-size: 14px;
+  color: var(--border-square);
+}
+
+.feedbacks li {
+  margin-top: 30px;
+  border-radius: 20px;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 30px;
+  padding: 30px;
+  text-align: left;
+  padding: 40px;
+  position: relative;
+  background-color: var(--bg-yellow);
+  flex-direction: row;
+}
+
+.feedbacks li:nth-child(even) {
+  background-color: var(--bg-gray);
+}
+
+.feedbacks li:hover .buttons img {
+  display: inline;
+  animation: ani 0.1s ease-in;
+}
+@keyframes ani {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* 피드백 출력, 수정 가능란 */
+.feedback-box .content {
+  max-width: 70%;
+  overflow: visible;
+  word-break: break-all;
+}
+
+/* 역할과 이름, 날짜 */
+.content div span {
+  line-height: 2;
+  font-size: 16px;
+}
+/* 피드백 수정, 삭제 버튼 */
+.feedbacks .btn-feedback-delete {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  opacity: 0;
+}
+
+.feedbacks li:hover .btn-feedback-delete {
+  opacity: 1;
+}
+
+.feedbacks .btn-feedback-modify {
+  position: absolute;
+  bottom: 40px;
+  right: 40px;
+}

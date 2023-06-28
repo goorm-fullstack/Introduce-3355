@@ -16,6 +16,7 @@ import java.util.concurrent.ExecutionException;
 /**
  * 파이어베이스 방명록 기능 구현부
  */
+@Slf4j
 @Service
 public class FirebaseCommentServiceImpl implements FirebaseCommentService {
     // 생성한 방명록을 DB에 저장
@@ -65,6 +66,8 @@ public class FirebaseCommentServiceImpl implements FirebaseCommentService {
     // 방명록을 업데이트하는 경우에 사용
     @Override
     public void updateComment(Comment comment) {
+        Date date = new Date();
+        comment.setDate(date.toString());
         Firestore firestore = FirestoreClient.getFirestore();
         ApiFuture<WriteResult> apiFuture = firestore.collection("comment").document(comment.getId())
                 .set(comment);
@@ -72,7 +75,7 @@ public class FirebaseCommentServiceImpl implements FirebaseCommentService {
 
     // 방명록을 제거하는 함수
     @Override
-    public void deleteComment(String id, String password) {
+    public void deleteComment(String id) {
         Firestore firestore = FirestoreClient.getFirestore();
         ApiFuture<WriteResult> apiFuture = firestore.collection("comment")
                 .document(id).delete();

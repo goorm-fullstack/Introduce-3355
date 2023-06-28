@@ -1,0 +1,129 @@
+/* modify.css */
+
+.wrapper.modify .member-box {
+  text-align: center;
+}
+
+.wrapper.modify h4 {
+  font-size: 36px;
+  font-weight: bold;
+  margin-bottom: 40px;
+}
+
+/* 멤버 이름 입력칸 */
+.member-box .modify-name {
+  font-size: 60px;
+  font-weight: bold;
+  margin: 10px 0 60px;
+  width: 600px;
+  text-align: center;
+}
+/* 호버시 나타나는 + 이미지 */
+.member-box .member-profile,
+.member-box .member-profile label {
+  cursor: pointer;
+}
+.member-box .member-profile:hover {
+  border-style: dashed;
+}
+
+/* 프로필 사진 선택창 */
+#profile-input {
+  display: none;
+}
+
+/* 깃허브 주소 편집 */
+.member-box .github-img {
+  width: 80px;
+  height: 80px;
+  position: absolute;
+  bottom: 80px;
+  right: 300px;
+  border: 7px solid var(--border-circle);
+  border-radius: 50%;
+  padding: 10px;
+  box-sizing: border-box;
+  background-color: white;
+  cursor: pointer;
+}
+
+/* 깃허브 주소 입력 input */
+.modify-git-address-wrap {
+  display: none;
+  position: absolute;
+  bottom: 50px;
+  left: 50%;
+  width: 400px;
+  margin-left: -200px;
+  border: 1px solid var(--border-circle);
+  background: var(--bg-white);
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.1);
+}
+.modify-git-address-wrap input {
+  height: 45px;
+}
+
+
+/* 역할과 포지션 입력란 */
+#role-position {
+  text-align: center;
+  color: var(--color-gray);
+}
+#role,
+#position {
+  font-size: 24px;
+  color: var(--color-gray);
+  height: 50px;
+  width: 250px;
+  text-align: center;
+}
+
+/* 자기소개 입력란 */
+.short-intro-box {
+  word-break: break-all;
+  margin-top: 80px;
+  font-size: 16px;
+}
+
+/* 자기소개 입력 textarea */
+.short-intro-box textarea {
+  line-height: 2;
+  font-size: 16px;
+  height: 200px;
+}
+
+.short-intro-box,
+.lang-box {
+  text-align: left;
+  margin-bottom: 100px;
+}
+
+/* 기술: 사용 언어 입력란 */
+/* checkbox */
+.lang-box .checkbox {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+/* checkbox 대신할 이미지 */
+.lang-box img {
+  width: 90px;
+  height: 90px;
+  object-fit: scale-down;
+}
+/* 언어 선택 체크박스 */
+input[type="checkbox"] {
+  display: none;
+}
+input[type="checkbox"] + label {
+  border: 7px solid var(--border-circle);
+  border-radius: 20px;
+  padding: 20px;
+  cursor: pointer;
+}
+input[type="checkbox"]:checked + label {
+  border-color: var(--color-black);
+}

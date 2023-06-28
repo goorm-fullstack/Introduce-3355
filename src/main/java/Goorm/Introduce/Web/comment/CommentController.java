@@ -50,7 +50,7 @@ public class CommentController {
     @DeleteMapping("/delete")
     public String deleteComment(@RequestBody Map<String, String> data, Model model) throws ExecutionException, InterruptedException {
         String id = data.get("id");
-        firebaseCommentService.deleteComment(id, "test");
+        firebaseCommentService.deleteComment(id);
         model.addAttribute("comments",firebaseCommentService.findAllComment());
         return "redirect:/";
     }
