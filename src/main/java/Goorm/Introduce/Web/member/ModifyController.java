@@ -31,8 +31,8 @@ public class ModifyController {
     }
 
     @PostMapping("/updated")
-    public String updated(Member member, @RequestParam String id) throws Exception {
-            firebaseMemberService.updateMember(member);
+    public String updated(Member member) throws Exception {
+        firebaseMemberService.updateMember(member);
         return "redirect:/";
     }
 }

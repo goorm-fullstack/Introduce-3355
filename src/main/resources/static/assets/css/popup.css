@@ -32,6 +32,11 @@
   border-radius: 20px;
 }
 
+#popup .popup-wrapper.popup-board { /* 2023.06.29 moon 추가 */
+    height: 370px;
+    margin-top: -185px;
+}
+
 #popup .popup-title {
   font-size: 24px;
   font-weight: bold;

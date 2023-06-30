@@ -12,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -43,14 +44,14 @@ public class WebController {
 
     // 로그인 폼 접근
     @GetMapping("/login")
-    public String loingForm() {
+    public String loingForm(@ModelAttribute User user) {
         return "pages/login";
     }
 
     // 로그인 처리 로직
     // 아이디와 비밀번호가 모두 맞다면 세션을 만들고 리다이렉트함
     @PostMapping("/login")
-    public String login(@ModelAttribute User user, BindingResult bindingResult, HttpServletRequest request) throws ExecutionException, InterruptedException {
+    public String login(@Validated @ModelAttribute User user, BindingResult bindingResult, HttpServletRequest request) throws ExecutionException, InterruptedException {
         if(bindingResult.hasErrors()){
             return "pages/login";
         }
@@ -58,7 +59,7 @@ public class WebController {
         User loginUser = firebaseUserService.login(user.getUsername(), user.getPassword());
 
         if(loginUser == null) {
-            bindingResult.reject("로그인 실패", "아이디 또는 비밀번확 맞지 않습니다");
+            bindingResult.reject("로그인 실패", "아이디 또는 비밀번호가 맞지 않습니다");
             return "pages/login";
         }
 

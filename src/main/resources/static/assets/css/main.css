@@ -88,7 +88,7 @@
 }
 
 #guest-book ul > li {
-  min-width: 185px;
+  width: 185px;
   margin: 0 10px;
   text-align: justify;
   position: relative;
@@ -101,6 +101,9 @@
   overflow-y: scroll;
   margin-bottom: 28px;
   text-align: left;
+  overflow-x: hidden;
+  white-space: pre-wrap;
+  word-break: break-all;
 }
 
 /* 방명록 스크롤 */

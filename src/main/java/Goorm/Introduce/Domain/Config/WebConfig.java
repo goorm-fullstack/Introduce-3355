@@ -20,7 +20,7 @@ public class WebConfig implements WebMvcConfigurer {
                 .order(1)
                 .addPathPatterns("/admin/**")
                 .excludePathPatterns("/","/member", "/login", "/logout", "/comment/**", "/css/**","/images/**","/js/**","/error")
-                .addPathPatterns("/member/add", "/modify/**");
+                .addPathPatterns("/member/add", "/modify/**", "/board/**", "/member/delete");
     }
 
     // 캐시 타임아웃 설정

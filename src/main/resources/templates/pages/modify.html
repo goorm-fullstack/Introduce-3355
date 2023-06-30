@@ -21,15 +21,16 @@
             <form name="member" id="member" action="/modify/updated" method="post">
                 <input type="hidden" name="id" th:value="${member?.id}">
                 <div class="member-box">
-                    <p class="title-en">memeber</p>
+                    <p class="title-en">member</p>
                     <input th:value="${member?.name}" name="name" class="modify-name" type="text" placeholder="이름" required><!-- 이름 입력 -->
                     <div class="member-profile">
                         <label for="profile-input"><!-- 프로필 사진 선택 -->
-                            <img th:if="${member?.profile != null}" th:src="@{{profileSrc}{profile}(profile=${member?.profile}, profileSrc=${member?.profileSrc})}" alt="프로필" class="profile-img">
-                            <img th:if="${member?.profile == null}" src="/assets/images/ico_profile.png" alt="프로필" class="profile-img">
+                            <img th:if="${member.profile != null}" th:src="@{{profileSrc}{profile}(profile=${member?.profile}, profileSrc=${member?.profileSrc})}" alt="프로필" class="profile-img">
+                            <img th:unless="${member.profile != null}" src="/assets/images/ico_profile.png" alt="프로필" class="profile-img">
                         </label>
-                        <input type="hidden" name="profileSrc" value="/assets/images/">
-                        <input name="profile" id="profile-input" type="file">
+                        <input type="hidden" id="profileSrc" name="profileSrc" th:value="${member.profileSrc}">
+                        <input name="profile" id="profile" th:value="${member.profile}">
+                        <input name="profile1" id="profile-input" type="file">
                     </div>
                     <div class="modify-git member-github" onclick="
                     document.querySelector('.modify-git-address-wrap').style.display='block';">
@@ -82,6 +83,6 @@
         </article>
     </section>
     <div th:replace="~{includes/footer :: footer}"></div>
-    <script src="assets/js/modify.js"></script>
+    <script src="/assets/js/modify.js"></script>
 </body>
 </html>
