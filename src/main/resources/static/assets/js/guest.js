@@ -45,12 +45,14 @@ function guestDelete(id) {
         httpRequest.responseType = "json";
         httpRequest.setRequestHeader("Content-Type","application/json");
         httpRequest.send(JSON.stringify(data));
-        location.href="/";
-        location.reload();
+        setTimeout(function(){
+            window.location.href="/";
+        }, 300);
   }
 }
 
 function guestWrite() {
+
   popupOpen('방명록 작성하기');
 }
 

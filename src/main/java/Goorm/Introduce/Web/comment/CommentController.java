@@ -40,7 +40,7 @@ public class CommentController {
         return "redirect:/";
     }
 
-    @PutMapping("/update")
+    @PostMapping("/update")
     public String updateComment(@RequestBody Comment comment, Model model) throws ExecutionException, InterruptedException {
         firebaseCommentService.updateComment(comment);
         model.addAttribute("comments",firebaseCommentService.findAllComment());

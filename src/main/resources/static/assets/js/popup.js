@@ -29,7 +29,7 @@ function popupOpen(title) {
   // popup html 태그 추가
   let popupBox = document.createElement('div');
   popupBox.setAttribute('id', 'popup');
-  popupBox.innerHTML = '<div class="popup-bg"></div><div class="popup-wrapper"><h5 class="popup-title">' + title + '</h5><div class="write-wrapper"><form action="/comment/add" method="post"><textarea name="content" placeholder="내용을 입력하세요."></textarea><button type="submit" class="btn-submit type-square type-block-one type-submit type-bg-black">등록</button></div><button type="button" onclick="popupClose();" class="btn-close type-transparent type-ico type-circle">닫기</button></form></div>';
+  popupBox.innerHTML = '<div class="popup-bg"></div><div class="popup-wrapper"><h5 class="popup-title">' + title + '</h5><div class="write-wrapper"><form action="/comment/add" method="post"><textarea name="content" placeholder="내용을 입력하세요."></textarea><button type="submit" class="btn-submit type-square type-block-one type-submit">등록</button></div><button type="button" onclick="popupClose();" class="btn-close type-transparent type-ico type-circle">닫기</button></form></div>';
   document.body.appendChild(popupBox);
 
   // popup 배경 클릭시에도 닫기
@@ -59,10 +59,14 @@ function popupModify() {
             date : document.getElementById('up_date').value,
     };
     httpRequest = new XMLHttpRequest();
-    httpRequest.open("PUT","/comment/update", true);
+    httpRequest.open("POST","/comment/update", true);
     httpRequest.responseType = "json";
     httpRequest.setRequestHeader("Content-Type","application/json");
     httpRequest.send(JSON.stringify(data));
+    // 타이머
+    setTimeout(function(){
+        window.location.href="/";
+    }, 300);
 
     // popup 배경 클릭시에도 닫기
     popupClose();
@@ -75,7 +79,19 @@ const pathString = window.location.pathname;
   // popup html 태그 추가
   let popupBox = document.createElement('div');
   popupBox.setAttribute('id', 'popup');
-   popupBox.innerHTML = '<div class="popup-bg"></div><div class="popup-wrapper popup-' + dataName + '"><h5 class="popup-title">' + title + '</h5><div class="write-wrapper"><form action="/' + dataName + '/update" method="post" id="popup-form"><input type="hidden" id="up_id" name="id" value=' + id + '><input type="hidden" name="memberId" value="' + memberIdUrl + '" id="up_memberId"><select name="role" id="up_role"><option value="조원">조원</option><option value="조장">조장</option></select><select name="name" id="up_name"><option value="김경규">김경규</option><option value="문소희">문소희</option><option value="배진환">배진환</option><option value="이정원">이정원</option></select><textarea name="content" id="up_content">'+content+'</textarea><button type="submit" class="btn-submit type-square type-block-one type-submit">등록</button></div><button type="button" onclick="popupClose();" class="btn-close type-transparent type-ico type-circle">닫기</button></form></div>';
+  const start ='<div class="popup-bg"></div><div class="popup-wrapper popup-' + dataName + '"><h5 class="popup-title">' + title + '</h5><div class="write-wrapper"><form action="/' + dataName + '/update" method="post" id="popup-form"><input type="hidden" id="up_id" name="id" value=' + id + '><input type="hidden" name="memberId" value="' + memberIdUrl + '" id="up_memberId"><select name="role" id="up_role"><option value="조원">조원</option><option value="조장">조장</option></select><select name="name" id="up_name">';
+  let main;
+  if(name=='김경규') {
+    main = '<option value="김경규" selected>김경규</option><option value="문소희">문소희</option><option value="배진환">배진환</option><option value="이정원">이정원</option></select>';
+  } else if(name == '문소희') {
+    main = '<option value="김경규">김경규</option><option value="문소희" selected>문소희</option><option value="배진환">배진환</option><option value="이정원">이정원</option></select>';
+  } else if(name=='배진환') {
+    main = '<option value="김경규">김경규</option><option value="문소희">문소희</option><option value="배진환" selected>배진환</option><option value="이정원">이정원</option></select>';
+  } else {
+    main = '<option value="김경규">김경규</option><option value="문소희">문소희</option><option value="배진환">배진환</option><option value="이정원" selected>이정원</option></select>';
+  }
+  const end = '<textarea name="content" id="up_content">'+content+'</textarea><button type="submit" class="btn-submit type-square type-block-one type-submit">등록</button></div><button type="button" onclick="popupClose();" class="btn-close type-transparent type-ico type-circle">닫기</button></form></div>';
+   popupBox.innerHTML = start+main+end;
   document.body.appendChild(popupBox);
 
   // popup 배경 클릭시에도 닫기

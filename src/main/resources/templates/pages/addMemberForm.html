@@ -1,12 +1,9 @@
 <!doctype html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-  <div th:replace="~{includes/head :: head}"></div>
-</head>
+<div th:replace="~{includes/head :: head}"></div>
+<link rel="stylesheet" href="/assets/css/modify.css" />
 <body>
-<header>
   <div th:replace="~{includes/header :: header}"></div>
-</header>
 <section class="wrapper member modify">
   <article class="container">
     <div class="prev-wrapper contents-full"><!-- 상단 버튼 -->
@@ -21,7 +18,7 @@
     <!-- form -->
     <form name="member" id="member" action="/modify/create" method="post">
       <div class="member-box">
-        <p class="title-en">memeber</p>
+        <p class="title-en">member</p>
         <input name="name" class="modify-name" type="text" placeholder="이름" required><!-- 이름 입력 -->
         <div class="member-profile">
           <label for="profile-input"><!-- 프로필 사진 선택 -->
@@ -35,7 +32,7 @@
           <i class="fa fa-github"></i><!-- 깃허브 주소 입력 -->
         </div>
         <div class="modify-git-address-wrap">
-          <input name="github" class="modify-git-address" type="text">
+          <input name="github" class="modify-git-address" type="text" value="https://github.com/">
           <button id="confirm" type="button" class="btn-github-modify type-square" onclick="
                         document.querySelector('.modify-git-address-wrap').style.display='none';">등록</button>
         </div>

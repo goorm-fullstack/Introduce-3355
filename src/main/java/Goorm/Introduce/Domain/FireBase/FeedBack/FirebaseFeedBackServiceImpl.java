@@ -102,8 +102,17 @@ public class FirebaseFeedBackServiceImpl implements FirebaseFeedBackService {
         Date date = new Date();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy.MM.dd");
         String strDate = simpleDateFormat.format(date);
-        FeedBack.setDate(date.toString());
+        FeedBack.setDate(strDate);
         Firestore firestore = FirestoreClient.getFirestore();
+        String profile = "";
+        switch (FeedBack.getName()) {
+            case "김경규": profile = "https://user-images.githubusercontent.com/121299334/247801974-24f71bb9-12bb-4b29-9e2b-73461af0635d.png"; break;
+            case "문소희": profile = "https://github-production-user-asset-6210df.s3.amazonaws.com/121299334/247800096-24c6f23b-8952-4e02-9347-ba42f5b67bc8.png"; break;
+            case "배진환": profile = "https://user-images.githubusercontent.com/121299334/248290954-c503b06b-188f-4041-abf8-4041093d80a0.png"; break;
+            case "이정원": profile = "https://user-images.githubusercontent.com/121299334/247802501-275b401f-aa95-43a9-a41e-6f4482e8f3e4.png"; break;
+            default: profile = "/assets/images/ico_profile.png";
+        }
+        FeedBack.setProfile(profile);
         ApiFuture<WriteResult> apiFuture = firestore.collection("board").document(FeedBack.getId())
                 .set(FeedBack);
     }

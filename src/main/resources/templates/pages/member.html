@@ -3,9 +3,7 @@
 <th:block th:replace="~{includes/head :: head}"></th:block>
 <link rel="stylesheet" href="/assets/css/member.css" />
 <body>
-    <header>
-        <div th:replace="~{includes/header :: header}"></div>
-    </header>
+    <div th:replace="~{includes/header :: header}"></div>
     <section class="wrapper member">
         <article class="member-info"><!-- 조원정보 -->
             <div class="prev-wrapper"><!-- 상단 버튼 -->
@@ -44,7 +42,8 @@
         <article class="feedback-box"><!-- 피드백 -->
             <div class="top"><!-- 피드백 상단 버튼 -->
                 <h4>피드백</h4>
-                <button type="button" onclick="feedbackWrite();" class="btn-feed-write type-ico type-square type-block"><i class="fa fa-pencil"></i>피드백 등록하기</button>
+                <button th:if="${session.isEmpty()}" type="button" onclick="location.href='/login';" class="btn-feed-write type-ico type-square type-block"><i class="fa fa-pencil"></i>피드백 등록하기</button>
+                <button th:unless="${session.isEmpty()}" type="button" onclick="feedbackWrite();" class="btn-feed-write type-ico type-square type-block"><i class="fa fa-pencil"></i>피드백 등록하기</button>
             </div>
             <ul class="feedbacks"><!-- 피드백 리스트: loop start -->
                 <li th:each="board : ${boards}" class="feedback-item">
@@ -59,7 +58,8 @@
                             <span id="feedback-contents" th:text="${board.content}">내용을 입력하세요.</span><!-- 피드백 작성란 -->
                         </div>
                     </div>
-                    <button type="button" th:data-id ="${board.id}"
+                    <button th:if="${session.isEmpty()}" type="button" onclick="location.href='/login';" class="btn-feedback-modify type-ico type-block type-bg-black type-circle">수정</button>
+                    <button th:unless="${session.isEmpty()}" type="button" th:data-id ="${board.id}"
                             th:data-role="${board.role}"
                             th:data-name="${board.name}"
                             th:data-content= "${board.content}"
@@ -68,7 +68,8 @@
                                             this.getAttribute('data-name'),
                                             this.getAttribute('data-content'));"
                             class="btn-feedback-modify type-ico type-block type-bg-black type-circle">수정</button>
-                    <button type="button" th:data-id ="${board.id}" onclick="feedbackDelete(this.getAttribute('data-id'));" class="btn-feedback-delete type-transparent type-ico type-circle">삭제</button>
+                    <button th:if="${session.isEmpty()}" type="button" onclick="location.href='/login';" class="btn-feedback-delete type-transparent type-ico type-circle">삭제</button>
+                    <button th:unless="${session.isEmpty()}" type="button" th:data-id ="${board.id}" onclick="feedbackDelete(this.getAttribute('data-id'));" class="btn-feedback-delete type-transparent type-ico type-circle">삭제</button>
                 </li><!-- 피드백 리스트: loop end -->
             </ul>
         </article>

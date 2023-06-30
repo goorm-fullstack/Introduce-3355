@@ -1,11 +1,13 @@
 package Goorm.Introduce.Domain.FireBase.User;
 
+import Goorm.Introduce.Domain.Member.Member;
 import Goorm.Introduce.Domain.User.User;
 import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.*;
 import com.google.firebase.cloud.FirestoreClient;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 /**
@@ -63,13 +65,16 @@ public class FirebaseUserServiceImpl implements FirebaseUsereService {
     @Override
     public User login(String username, String password) throws ExecutionException, InterruptedException {
         Firestore firestore = FirestoreClient.getFirestore();
-        ApiFuture<QuerySnapshot> apiFuture = firestore.collection("user").whereEqualTo("username", username).get();
-        QuerySnapshot snapshot = apiFuture.get();
-        DocumentSnapshot temp = snapshot.getDocuments().get(0);
+        ApiFuture<QuerySnapshot> apiFuture = firestore.collection("user").get();
+        List<QueryDocumentSnapshot> documentSnapshots = apiFuture.get().getDocuments();
         User loginUser = null;
-        if(temp.exists()) {
-            loginUser = temp.toObject(User.class);
+        for(QueryDocumentSnapshot snapshot : documentSnapshots) {
+            User user = snapshot.toObject(User.class);
+            if(user.getUsername().equals(username) && user.getPassword().equals(password)) {
+                loginUser = user;
+                return loginUser;
+            }
         }
-        return loginUser;
+        return null;
     }
 }

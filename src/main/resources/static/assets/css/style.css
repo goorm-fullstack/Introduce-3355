@@ -68,6 +68,16 @@ input {
   border-style: solid;
 }
 
+select { /* 2023.06.29 moon 추가 */
+    border-color: var(--border-square);
+    height: 40px;
+    margin: 0 4px 10px 0;
+    padding: 0 8px;
+    font-size: 14px;
+    border-radius: 4px;
+}
+
+
 /* 서브 페이지 index로 이동 영역 */
 .prev-wrapper {
   display: flex;

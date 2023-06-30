@@ -80,8 +80,8 @@
 }
 /* 언어 이미지 */
 .lang-box img {
-  width: 150px;
-  height: 150px;
+  width: 90px;
+  height: 90px;
 }
 
 /* 피드백란 */
@@ -112,6 +112,12 @@
   overflow: hidden;
   background-color: var(--bg-white);
 }
+
+.feedbacks .profile-border img { /* 20230630 moon 추가 */
+    width: 100%;
+    height: 100%;
+}
+
 /* 역할과 이름 */
 .feedbacks .role-name {
   font-size: 18px;
@@ -184,4 +190,10 @@
   position: absolute;
   bottom: 40px;
   right: 40px;
+}
+
+.lang-icons li {
+    border : 7px solid var(--border-circle);
+    border-radius : 20px;
+    padding : 20px;
 }

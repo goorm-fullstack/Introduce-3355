@@ -20,6 +20,5 @@ function feedbackDelete(id) {
         httpRequest.responseType = "json";
         httpRequest.setRequestHeader("Content-Type","application/json");
         httpRequest.send(JSON.stringify(data));
-        location.href="/";
   }
 }
