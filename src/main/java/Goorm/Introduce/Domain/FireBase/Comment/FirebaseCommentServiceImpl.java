@@ -1,6 +1,5 @@
 package Goorm.Introduce.Domain.FireBase.Comment;
 
-import Goorm.Introduce.Domain.Board.Board;
 import Goorm.Introduce.Domain.Comment.Comment;
 import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.*;
@@ -8,6 +7,7 @@ import com.google.firebase.cloud.FirestoreClient;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -23,10 +23,12 @@ public class FirebaseCommentServiceImpl implements FirebaseCommentService {
     @Override
     public void insertComment(Comment comment) {
         Date date = new Date();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy.MM.dd");
+        String strDate = simpleDateFormat.format(date);
         Firestore firestore = FirestoreClient.getFirestore();
         String uid = firestore.collection("comment").document().getId();
         comment.setId(uid);
-        comment.setDate(date.toString());
+        comment.setDate(strDate);
         ApiFuture<WriteResult> apiFuture = firestore.collection("comment").document(uid).set(comment);
     }
 
@@ -67,7 +69,9 @@ public class FirebaseCommentServiceImpl implements FirebaseCommentService {
     @Override
     public void updateComment(Comment comment) {
         Date date = new Date();
-        comment.setDate(date.toString());
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy.MM.dd");
+        String strDate = simpleDateFormat.format(date);
+        comment.setDate(strDate);
         Firestore firestore = FirestoreClient.getFirestore();
         ApiFuture<WriteResult> apiFuture = firestore.collection("comment").document(comment.getId())
                 .set(comment);

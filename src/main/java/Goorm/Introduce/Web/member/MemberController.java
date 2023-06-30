@@ -1,11 +1,11 @@
 package Goorm.Introduce.Web.member;
 
-import Goorm.Introduce.Domain.Board.Board;
-import Goorm.Introduce.Domain.Board.BoardRepository;
-import Goorm.Introduce.Domain.Comment.Comment;
-import Goorm.Introduce.Domain.FireBase.Board.FirebaseBoardServiceImpl;
-import Goorm.Introduce.Domain.FireBase.Comment.FirebaseCommentServiceImpl;
+import Goorm.Introduce.Domain.FeedBack.FeedBack;
+import Goorm.Introduce.Domain.FireBase.FeedBack.FirebaseFeedBackServiceImpl;
+import Goorm.Introduce.Domain.FireBase.Member.FirebaseMemberService;
+import Goorm.Introduce.Domain.Member.Member;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -17,27 +17,33 @@ import java.util.concurrent.ExecutionException;
  * /member/**로 들어오는 요청을 처리하는 컨트롤러
  */
 @Controller
+@Slf4j
 @RequestMapping("/member")
 @RequiredArgsConstructor
 public class MemberController {
-    private final FirebaseBoardServiceImpl firebaseBoardService;
+    private final FirebaseMemberService firebaseMemberService;
+    private final FirebaseFeedBackServiceImpl firebaseFeedBackService;
 
-    @GetMapping("/{id}")
-    public String introduce(@PathVariable String id, Model model) throws ExecutionException, InterruptedException {
-        Board board = firebaseBoardService.getBoard(id);
-        model.addAttribute("board", board);
-        return "Member/member";
-    }
-
-    @ResponseBody
     @GetMapping("/add")
-    public String addForm() {
-        return "Member/member";
+    public String goModify(){
+        return "pages/addMemberForm";
     }
 
-    @GetMapping("/list")
-    public String memberList(Model model) throws ExecutionException, InterruptedException {
-        model.addAttribute("members", firebaseBoardService.getAllBoard());
-        return "Member/memberList";
+    // 선택 멤버 페이지 이동
+    @GetMapping("/{id}")
+    public String introduceMember(@PathVariable String id, Model model) throws ExecutionException, InterruptedException{
+        Member member = firebaseMemberService.getMember(id);
+        List<FeedBack> feedBackList = firebaseFeedBackService.getByMemberId(id);
+        model.addAttribute("member", member);
+        model.addAttribute("boards", feedBackList);
+        return "pages/member";
+    }
+
+    // 멤버 삭제
+    @GetMapping("/delete")
+    public String delete(@RequestParam String id) throws Exception {
+        firebaseMemberService.deleteMember(id);
+        return "redirect:/";
     }
 }
+

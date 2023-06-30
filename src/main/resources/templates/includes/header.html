@@ -19,7 +19,7 @@
             <a href="/login" class="btn-admin type-square type-block type-transparent type-ico"><i class="fa fa-id-badge"></i>관리자 로그인</a>
         </div>
         <h1 class="hero">3조 삼삼오오</h1><!-- 메인페이지 로고 -->
-        <a href="#" class="btn-scroll type-transparent">scroll</a>
+        <button type="button" onclick="mainScroll();" class="btn-scroll type-transparent">scroll</button>
         <div th:id="round"></div><!-- 헤더 하단 둥글게 처리 -->
     </div>
     <div th:unless="${session.isEmpty()}" class="header-contents"><!-- header 내용들 -->
@@ -28,7 +28,7 @@
             <a href="/logout" class="btn-admin type-square type-block type-transparent type-ico"><i class="fa fa-id-badge"></i>로그아웃</a>
         </div>
         <h1 class="hero">3조 삼삼오오</h1><!-- 메인페이지 로고 -->
-        <a href="#" class="btn-scroll type-transparent">scroll</a>
+        <button type="button" onclick="mainScroll();" class="btn-scroll type-transparent">scroll</button>
         <div th:id="round"></div><!-- 헤더 하단 둥글게 처리 -->
     </div>
 </header>

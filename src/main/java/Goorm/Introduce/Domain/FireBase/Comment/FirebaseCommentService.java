@@ -1,6 +1,5 @@
 package Goorm.Introduce.Domain.FireBase.Comment;
 
-import Goorm.Introduce.Domain.Board.Board;
 import Goorm.Introduce.Domain.Comment.Comment;
 
 import java.util.List;

@@ -1,55 +1,79 @@
-<link rel="stylesheet" href="assets/css/member.css">
-<section class="wrapper member">
-  <article class="member-info"><!-- 조원정보 -->
-    <div class="prev-wrapper"><!-- 상단 버튼 -->
-        <div class="move-back">
-          <a class="btn-previous type-ico type-block type-circle type-middle type-border" href="index.html"></a>
-          <h3>3조 삼삼오오</h3>
-        </div>
-        <div class="buttons-wrapper">
-          <a href="modify.html" class="btn-member-modify type-ico type-square type-block"><i class="fa fa-pencil"></i>조원 정보수정</a>
-          <button type="button" class="btn-member-delete type-ico type-red-square"><i class="fa fa-remove"></i>조원 삭제</button>
-        </div>
-    </div>
-    <div class="member-box"><!-- 멤버 정보 창 -->
-      <p class="title-en">memeber</p><!-- member -->
-      <p class="title-ko">배진환</p><!-- 멤버 이름 -->
-      <div class="member-profile"><img src="assets/images/ico_profile.png" alt="프로필" class="profile-img"></div><!-- 멤버 프로필 -->
-      <div class="member-github"><a href="https://github.com/" target="_blank"><i class="fa fa-github"></i></a><p class="arrow-box">GitHub</p></div><!-- 깃허브 링크 -->
-    </div>
-    <div id="role-position"><!-- 역할과 포지션 -->
-      <span>역할</span> / <span>포지션</span>
-    </div>
-    <div class="short-intro-box"><!-- 자기 소개 -->
-      <h4>소개</h4>
-      <p>내용이 없습니다.</p>
-    </div>
-    <div class="lang-box"><!-- 사용 언어 -->
-      <p>기술</p>
-      <ul class="lang-icons"><!-- 언어 선택한 만큼 이미지 불러오기 -->
-        <li><img src="assets/images/java.png" alt="java"></li>
-      </ul>
-    </div>
-  </article>
-  <article class="feedback-box"><!-- 피드백 -->
-    <div class="top"><!-- 피드백 상단 버튼 -->
-      <h4>피드백</h4>
-      <button type="button" class="btn-feed-write type-ico type-square type-block"><i class="fa fa-pencil"></i>피드백 등록하기</button>
-    </div>
-    <ul class="feedbacks"><!-- 피드백 리스트: loop start -->
-        <li class="feedback-item">
-            <div class="profile-border"><img src="assets/images/ico_profile.png" alt="프로필" class="profile-img"></div><!-- 프로필 이미지 -->
-            <div class="content">
-                <span class="role-name">역할 이름</span><!-- 역할과 이름 -->
-                <span class="date">0000.00.00</span><!-- 날짜 -->
-                <div>
-                    <span id="feedback-contents">내용을 입력하세요.</span><!-- 피드백 작성란 -->
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="~{includes/head :: head}"></th:block>
+<link rel="stylesheet" href="/assets/css/member.css" />
+<body>
+    <header>
+        <div th:replace="~{includes/header :: header}"></div>
+    </header>
+    <section class="wrapper member">
+        <article class="member-info"><!-- 조원정보 -->
+            <div class="prev-wrapper"><!-- 상단 버튼 -->
+                <div class="move-back">
+                    <a class="btn-previous type-ico type-block type-circle type-middle type-border" href="/"></a>
+                    <h3>3조 삼삼오오</h3>
+                </div>
+                <div class="buttons-wrapper">
+                    <a th:href="@{/modify/update(id=${member?.id})}" class="btn-member-modify type-ico type-square type-block"><i class="fa fa-pencil"></i>조원 정보수정</a>
+                    <button type="button" th:onclick="|location.href='@{/member/delete(id=${member?.getId})}'|" class="btn-member-delete type-ico type-red-square"><i class="fa fa-remove"></i>조원 삭제</button>
                 </div>
             </div>
-            <button type="button" onclick="" class="btn-feedback-modify type-ico type-block type-bg-black type-circle">수정</button>
-            <button type="button" onclick="" class="btn-feedback-delete type-transparent type-ico type-circle">삭제</button>
-        </li><!-- 피드백 리스트: loop end -->
-    </ul>
-  </article>
-</section>
-<script src="assets/js/member.js"></script>
+            <div class="member-box"><!-- 멤버 정보 창 -->
+                <p class="title-en">memeber</p><!-- member.js -->
+                <p class="title-ko" th:text="${member?.getName()}">배진환</p><!-- 멤버 이름 -->
+                <div class="member-profile">
+                    <img th:if="${member?.getProfile() != null}" th:src="@{{profileSrc}{profile}(profile=${member?.getProfile()}, profileSrc=${member?.getProfileSrc()})}" alt="프로필" class="profile-img">
+                    <img th:if="${member?.getProfile() == null}" src="/assets/images/ico_profile.png" alt="프로필", class="profile-img">
+                </div><!-- 멤버 프로필 -->
+                <div class="member-github"><a th:href="@{${member?.getGithub()}}" target="_blank"><i class="fa fa-github"></i></a><p class="arrow-box">GitHub</p></div><!-- 깃허브 링크 -->
+            </div>
+            <div id="role-position"><!-- 역할과 포지션 -->
+                <span th:text="${member?.getRole()}">역할</span> / <span th:text="${member?.getFavorite()}">포지션</span>
+            </div>
+            <div class="short-intro-box"><!-- 자기 소개 -->
+                <h4>소개</h4>
+                <p th:text="${member?.getShortIntro()}">내용이 없습니다.</p>
+            </div>
+            <div class="lang-box"><!-- 사용 언어 -->
+                <p>기술</p>
+                <ul class="lang-icons"><!-- 언어 선택한 만큼 이미지 불러오기 -->
+                    <li th:each="language : ${member?.getLang()}"><img th:src="@{${language}}" alt="no-image"></li>
+                </ul>
+            </div>
+        </article>
+        <article class="feedback-box"><!-- 피드백 -->
+            <div class="top"><!-- 피드백 상단 버튼 -->
+                <h4>피드백</h4>
+                <button type="button" onclick="feedbackWrite();" class="btn-feed-write type-ico type-square type-block"><i class="fa fa-pencil"></i>피드백 등록하기</button>
+            </div>
+            <ul class="feedbacks"><!-- 피드백 리스트: loop start -->
+                <li th:each="board : ${boards}" class="feedback-item">
+                    <div class="profile-border"><img th:src="${board.profile}" alt="프로필" class="profile-img"></div><!-- 프로필 이미지 -->
+                    <div class="content">
+                <span class="role-name"><!-- 역할과 이름 -->
+                    <span th:text="${board.role}">역할</span>
+                    <span th:text="${board.name}">이름</span>
+                </span>
+                        <span class="date" th:text="${board.date}">0000.00.00</span><!-- 날짜 -->
+                        <div>
+                            <span id="feedback-contents" th:text="${board.content}">내용을 입력하세요.</span><!-- 피드백 작성란 -->
+                        </div>
+                    </div>
+                    <button type="button" th:data-id ="${board.id}"
+                            th:data-role="${board.role}"
+                            th:data-name="${board.name}"
+                            th:data-content= "${board.content}"
+                            onclick="feedbackModify(this.getAttribute('data-id'),
+                                            this.getAttribute('data-role'),
+                                            this.getAttribute('data-name'),
+                                            this.getAttribute('data-content'));"
+                            class="btn-feedback-modify type-ico type-block type-bg-black type-circle">수정</button>
+                    <button type="button" th:data-id ="${board.id}" onclick="feedbackDelete(this.getAttribute('data-id'));" class="btn-feedback-delete type-transparent type-ico type-circle">삭제</button>
+                </li><!-- 피드백 리스트: loop end -->
+            </ul>
+        </article>
+    </section>
+    <script src="/assets/js/feedback.js"></script>
+    <div th:insert="~{includes/footer :: footer}"></div>
+</body>
+</html>

@@ -47,16 +47,19 @@
         <h3 class="title-ko">조원 소개</h3>
         <ul id="member-list">
           <!-- 조원 목록: loop start-->
-          <li><!-- 여기부터 -->
-            <div class="member-image">
-              <a href="#" class="btn-more type-ico type-block type-circle type-big type-border">자세히 보기</a>
+          <li th:each="member : ${members}"><!-- 여기부터 -->
+            <div th:if="${member?.profile} != null" class="member-image" th:style="'background-image:url('+ @{{profileSrc}{profile}(profileSrc=${member?.profileSrc}, profile=${member?.profile})} +');'">
+              <a th:href="@{/member/{id}(id=${member?.id})}" class="btn-more type-ico type-block type-circle type-big type-border">자세히 보기</a>
             </div>
-            <p class="member-name"><a href="#">홍삼이</a></p>
-            <p class="member-position"><span class="">역할</span> / <span>개발 포지션</span></p>
-          </li>
+            <div th:if="${member?.profile} == null" class="member-image">
+              <a th:href="@{/member/{id}(id=${member?.id})}" class="btn-more type-ico type-block type-circle type-big type-border">자세히 보기</a>
+            </div>
+            <p class="member-name" th:text="${member?.name}"><a href="@{/member/{id}(id=${member?.id})}">홍삼이</a></p>
+            <p class="member-position"><span class="" th:text="${member?.role}">역할</span> / <span th:text="${member?.favorite}">개발 포지션</span></p>
+          </li><!-- 여기까지 조원 정보 등록된 수만큼 반복 -->
           <!-- 조원 목록: loop end -->
           <li class="member-add"><!-- 조원 추가 버튼 -->
-            <a href="#" class="btn-add-member type-ico type-block type-circle type-big type-border">조원 추가</a>
+            <a href="/member/add" class="btn-add-member type-ico type-block type-circle type-big type-border">조원 추가</a>
           </li><!-- // 조원 추가 버튼 -->
         </ul>
       </article>
