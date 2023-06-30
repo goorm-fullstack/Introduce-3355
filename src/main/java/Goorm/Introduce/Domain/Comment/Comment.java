@@ -1,6 +1,5 @@
 package Goorm.Introduce.Domain.Comment;
 
-import Goorm.Introduce.Domain.Board.Board;
 import lombok.Data;
 
 /**

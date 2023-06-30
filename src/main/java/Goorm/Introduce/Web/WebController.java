@@ -1,28 +1,19 @@
 package Goorm.Introduce.Web;
 
-import Goorm.Introduce.Domain.Board.Board;
-import Goorm.Introduce.Domain.Board.BoardRepository;
 import Goorm.Introduce.Domain.Comment.Comment;
+import Goorm.Introduce.Domain.FireBase.Member.FirebaseMemberServiceImpl;
 import Goorm.Introduce.Domain.FireBase.Comment.FirebaseCommentServiceImpl;
 import Goorm.Introduce.Domain.FireBase.User.FirebaseUserServiceImpl;
+import Goorm.Introduce.Domain.Member.Member;
 import Goorm.Introduce.Domain.User.User;
-import Goorm.Introduce.Domain.User.UserService;
-import com.google.api.core.ApiFuture;
-import com.google.cloud.firestore.Firestore;
-import com.google.cloud.firestore.QueryDocumentSnapshot;
-import com.google.cloud.firestore.QuerySnapshot;
-import com.google.firebase.cloud.FirestoreClient;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
-import lombok.Data;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
@@ -31,16 +22,21 @@ import java.util.concurrent.ExecutionException;
 public class WebController {
     private final FirebaseUserServiceImpl firebaseUserService;
     private final FirebaseCommentServiceImpl firebaseCommentService;
+    private final FirebaseMemberServiceImpl firebaseMemberService;
 
     // 메인페이지
     // 로그인한 사용자와 아닌 사용자가 모두 온다.
     @GetMapping("/")
     public String Home(@SessionAttribute(name="loginAdmin", required = false) User user, Model model) throws ExecutionException, InterruptedException {
         List<Comment> commentList = firebaseCommentService.findAllComment();
-        model.addAttribute("comments", commentList);
-        if(user ==null)
+        List<Member> memberList = firebaseMemberService.getAllMember();
+        if(user ==null) {
+            model.addAttribute("comments", commentList);
+            model.addAttribute("members", memberList);
             return "index";
-
+        }
+        model.addAttribute("comments", commentList);
+        model.addAttribute("members", memberList);
         model.addAttribute("user", user);
         return "index";
     }

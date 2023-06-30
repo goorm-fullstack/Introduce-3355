@@ -1,6 +1,5 @@
 package Goorm.Introduce.Domain.FireBase.User;
 
-import Goorm.Introduce.Domain.Board.Board;
 import Goorm.Introduce.Domain.User.User;
 import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.*;

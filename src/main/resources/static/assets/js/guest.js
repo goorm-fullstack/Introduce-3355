@@ -46,6 +46,7 @@ function guestDelete(id) {
         httpRequest.setRequestHeader("Content-Type","application/json");
         httpRequest.send(JSON.stringify(data));
         location.href="/";
+        location.reload();
   }
 }
 
