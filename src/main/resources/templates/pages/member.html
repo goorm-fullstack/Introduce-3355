@@ -4,6 +4,7 @@
 <link rel="stylesheet" href="/assets/css/member.css" />
 <body>
     <div th:replace="~{includes/header :: header}"></div>
+    <input type="hidden" id="memberId" th:value="${member.id}">
     <section class="wrapper member">
         <article class="member-info"><!-- 조원정보 -->
             <div class="prev-wrapper"><!-- 상단 버튼 -->
@@ -13,7 +14,7 @@
                 </div>
                 <div class="buttons-wrapper">
                     <a th:href="@{/modify/update(id=${member?.id})}" class="btn-member-modify type-ico type-square type-block"><i class="fa fa-pencil"></i>조원 정보수정</a>
-                    <button type="button" th:onclick="|location.href='@{/member/delete(id=${member?.getId})}'|" class="btn-member-delete type-ico type-red-square"><i class="fa fa-remove"></i>조원 삭제</button>
+                    <button type="button" th:onclick="onDelete([[${member?.id}]]);" class="btn-member-delete type-ico type-red-square"><i class="fa fa-remove"></i>조원 삭제</button>
                 </div>
             </div>
             <div class="member-box"><!-- 멤버 정보 창 -->
@@ -75,6 +76,7 @@
         </article>
     </section>
     <script src="/assets/js/feedback.js"></script>
+    <script src="/assets/js/member.js"></script>
     <div th:insert="~{includes/footer :: footer}"></div>
 </body>
 </html>

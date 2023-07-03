@@ -22,6 +22,8 @@
         <button type="button" onclick="mainScroll();" class="btn-scroll type-transparent">scroll</button>
         <div th:id="round"></div><!-- 헤더 하단 둥글게 처리 -->
     </div>
+    <p th:id="chrome">이 사이트는 크롬(Chrome) 및 PC에<br>최적화되어 있습니다.</p>
+    </div>
     <div th:unless="${session.isEmpty()}" class="header-contents"><!-- header 내용들 -->
         <div class="header"><!-- 서브 페이지에도 공통적으로 들어가는 영역 -->
             <h2 th:id="goormthon"><a href="/">구름톤 트레이닝 1차 스터디</a></h2>
@@ -30,5 +32,7 @@
         <h1 class="hero">3조 삼삼오오</h1><!-- 메인페이지 로고 -->
         <button type="button" onclick="mainScroll();" class="btn-scroll type-transparent">scroll</button>
         <div th:id="round"></div><!-- 헤더 하단 둥글게 처리 -->
+    </div>
+    <p th:id="chrome">이 사이트는 크롬(Chrome) 및 PC에<br>최적화되어 있습니다.</p>
     </div>
 </header>

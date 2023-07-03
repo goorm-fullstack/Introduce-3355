@@ -250,3 +250,17 @@ footer a:hover {
   right: 60px;
   transform: rotate(-90deg);
 }
+
+/* 크롬 최적화 */
+#chrome {
+    position: absolute;
+    top: 100px;
+    left: 60px;
+    background: url('/assets/images/ico_chrome.png') no-repeat left center;
+    font-size: 14px;
+    line-height: 1.4;
+    text-align: left;
+    padding-left: 48px;
+    color: var(--color-light-black);
+    z-index: 3;
+}

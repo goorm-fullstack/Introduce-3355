@@ -11,6 +11,7 @@ function feedbackModify(id, role, name, content) {
 }
 
 function feedbackDelete(id) {
+  const memberId = document.getElementById('memberId').value;
   if(confirm('삭제하시겠습니까?')) {
         let data = {
             id : id,
@@ -20,5 +21,8 @@ function feedbackDelete(id) {
         httpRequest.responseType = "json";
         httpRequest.setRequestHeader("Content-Type","application/json");
         httpRequest.send(JSON.stringify(data));
+         setTimeout(function(){
+            window.location.href="/member/"+memberId;
+         }, 300);
   }
 }

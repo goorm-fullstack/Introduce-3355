@@ -4,7 +4,7 @@
 let indexscroll = document.getElementsByClassName('btn-scroll');
 
 function mainScroll() {
-  var aboutPosition = document.getElementById('about-group').offsetTop - 90;
+  var aboutPosition = document.getElementById('about-group').offsetTop - 80;
   let scrollInterval = window.setInterval(function() {
     if(window.scrollY < aboutPosition){
       document.body.scrollTop = window.scrollY + 10;
