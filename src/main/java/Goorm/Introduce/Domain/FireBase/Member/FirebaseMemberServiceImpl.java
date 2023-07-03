@@ -11,11 +11,11 @@ import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 /**
- * 파이어베이스 조원 정보 기능 구현부
+ * 파이어베이스 게시글 기능 구현부
  */
 @Service
 public class FirebaseMemberServiceImpl implements FirebaseMemberService {
-    // 입력받은 조원 정보 데이터를 DB에 저장
+    // 입력받은 게시글 데이터를 DB에 저장
     @Override
     public void insertMember(Member member) {
         Firestore firestore = FirestoreClient.getFirestore();
@@ -24,7 +24,7 @@ public class FirebaseMemberServiceImpl implements FirebaseMemberService {
         ApiFuture<WriteResult> apiFuture = firestore.collection("member").document(uid).set(member);
     }
 
-    // 조원 정보의 id를 사용해서 DB에서 조원 정보를 가져오는 기능
+    // 게시글의 id를 사용해서 DB에서 게시글을 가져오는 기능
     @Override
     public Member getMember(String id) throws ExecutionException, InterruptedException {
         Firestore firestore = FirestoreClient.getFirestore();
@@ -42,21 +42,21 @@ public class FirebaseMemberServiceImpl implements FirebaseMemberService {
     }
 
     /**
-     * @return : 모든 조원 정보 리스트를 반환
+     * @return : 모든 게시글 리스트를 반환
      */
     @Override
     public List<Member> getAllMember() throws ExecutionException, InterruptedException {
-        List<Member> memberList = new ArrayList<>();
+        List<Member> MemberList = new ArrayList<>();
         Firestore firestore = FirestoreClient.getFirestore();
         ApiFuture<QuerySnapshot> apiFuture = firestore.collection("member").get();
         List<QueryDocumentSnapshot> documentSnapshots = apiFuture.get().getDocuments();
         for(QueryDocumentSnapshot snapshot : documentSnapshots) {
-            memberList.add(snapshot.toObject(Member.class));
+            MemberList.add(snapshot.toObject(Member.class));
         }
-        return memberList;
+        return MemberList;
     }
 
-    // 조원 정보을 업데이트하는 기능
+    // 게시글을 업데이트하는 기능
     @Override
     public void updateMember(Member member) throws Exception {
         Firestore firestore = FirestoreClient.getFirestore();
@@ -64,11 +64,12 @@ public class FirebaseMemberServiceImpl implements FirebaseMemberService {
                 .set(member);
     }
 
-    // 조원 정보를 삭제하는 기능
+    // 게시글을 삭제하는 기능
     @Override
-    public void deleteMember(String id) {
+    public String deleteMember(String id) {
         Firestore firestore = FirestoreClient.getFirestore();
         ApiFuture<WriteResult> apiFuture = firestore.collection("member")
                 .document(id).delete();
+        return "id : " + id + "delete";
     }
 }

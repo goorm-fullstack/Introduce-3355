@@ -49,12 +49,12 @@ public class FeedController {
     }
 
     @DeleteMapping("/delete")
-    public String deleteBoard(@RequestBody Map<String, String> data, Model model) throws ExecutionException, InterruptedException {
+    public void deleteBoard(@RequestBody Map<String, String> data, Model model) throws ExecutionException, InterruptedException {
         String id = data.get("id");
         FeedBack feedBack = firebaseFeedBackService.getFeedBack(id);
         firebaseFeedBackService.deleteFeedBack(id);
-        model.addAttribute("boards", firebaseFeedBackService.findAllFeedBack());
-
-        return "redirect:/member/"+feedBack.getMemberId();
+//        model.addAttribute("boards", firebaseFeedBackService.findAllFeedBack());
+//
+//        return "redirect:/member/"+feedBack.getMemberId();
     }
 }

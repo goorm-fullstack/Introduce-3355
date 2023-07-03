@@ -19,3 +19,17 @@ function readImage(input) {
 input.addEventListener("change", (e) => {
   readImage(e.target);
 });
+
+// 멤버 정보 수정 시 기존 내용 유지 기능
+const checkBoxs = document.querySelectorAll(".check");
+const langs = document.querySelectorAll(".langs");
+window.onload = function check(){
+    for(let i = 0; i < checkBoxs.length; i++){
+        let checkBox = checkBoxs.item(i);
+        for(let j = 0; j < langs.length; j++){
+            let lang = langs.item(j);
+            if(checkBox.value === lang.value) checkBox.checked="true";
+        }
+    }
+}
+

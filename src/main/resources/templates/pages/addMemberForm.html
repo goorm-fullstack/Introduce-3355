@@ -25,7 +25,8 @@
             <img src="/assets/images/ico_profile.png" alt="프로필" class="profile-img">
           </label>
           <input type="hidden" name="profileSrc" value="/assets/images/">
-          <input name="profile" id="profile-input" type="file">
+          <input type="hidden" name="profile" id="profile">
+          <input name="profile1" id="profile-input" type="file">
         </div>
         <div class="modify-git member-github" onclick="
                     document.querySelector('.modify-git-address-wrap').style.display='block';">
@@ -77,8 +78,7 @@
     </form>
   </article>
 </section>
-<footer>
   <div th:replace="~{includes/footer :: footer}"></div>
-</footer>
+  <script src="/assets/js/modify.js"></script>
 </body>
 </html>

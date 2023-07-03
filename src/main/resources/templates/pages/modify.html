@@ -10,7 +10,7 @@
         <article class="container">
             <div class="prev-wrapper contents-full"><!-- 상단 버튼 -->
                 <div class="move-back">
-                  <a class="btn-previous type-ico type-block type-circle type-middle type-border" href="/"></a>
+                  <a class="btn-previous type-ico type-block type-circle type-middle type-border" th:href="@{/member/{id}(id=${member?.id})}"></a>
                   <h3>3조 삼삼오오</h3>
                 </div>
                 <div class="buttons-wrapper">
@@ -25,11 +25,11 @@
                     <input th:value="${member?.name}" name="name" class="modify-name" type="text" placeholder="이름" required><!-- 이름 입력 -->
                     <div class="member-profile">
                         <label for="profile-input"><!-- 프로필 사진 선택 -->
-                            <img th:if="${member.profile != null}" th:src="@{{profileSrc}{profile}(profile=${member?.profile}, profileSrc=${member?.profileSrc})}" alt="프로필" class="profile-img">
+                            <img th:if="${member.profile != null}"  th:src="@{{profileSrc}{profile}(profile=${member?.profile}, profileSrc=${member?.profileSrc})}" alt="프로필" class="profile-img">
                             <img th:unless="${member.profile != null}" src="/assets/images/ico_profile.png" alt="프로필" class="profile-img">
                         </label>
                         <input type="hidden" id="profileSrc" name="profileSrc" th:value="${member.profileSrc}">
-                        <input name="profile" id="profile" th:value="${member.profile}">
+                        <input type="hidden" name="profile" id="profile" th:value="${member.profile}">
                         <input name="profile1" id="profile-input" type="file">
                     </div>
                     <div class="modify-git member-github" onclick="
@@ -53,29 +53,30 @@
                 <div class="lang-box contents-full"><!-- 사용 언어 입력 -->
                     <h4>기술</h4>
                     <div class="checkbox">
-                        <input name="lang" id="html" type="checkbox" value="/assets/images/html.png">
+                        <input th:each="language : ${member?.lang}" type="hidden" class="langs" th:value="${language}">
+                        <input name="lang" id="html" class="check" type="checkbox" value="/assets/images/html.png">
                         <label for="html"><img src="/assets/images/html.png" alt="html"></label>
-                        <input name="lang" id="css" type="checkbox" value="/assets/images/css.png">
+                        <input name="lang" id="css" class="check" type="checkbox" value="/assets/images/css.png">
                         <label for="css"><img src="/assets/images/css.png" alt="css"></label>
-                        <input name="lang" id="javascript" type="checkbox" value="/assets/images/javascript.png">
+                        <input name="lang" id="javascript" class="check" type="checkbox" value="/assets/images/javascript.png">
                         <label for="javascript"><img src="/assets/images/javascript.png" alt="javascript"></label>
-                        <input name="lang" id="java" type="checkbox" value="/assets/images/java.png">
+                        <input name="lang" id="java" class="check" type="checkbox" value="/assets/images/java.png">
                         <label for="java"><img src="/assets/images/java.png" alt="자바" class="language-img-java"></label>
-                        <input name="lang" id="spring" type="checkbox" value="/assets/images/spring.png">
+                        <input name="lang" id="spring" class="check" type="checkbox" value="/assets/images/spring.png">
                         <label for="spring"><img src="/assets/images/spring.png" alt="spring"></label>
-                        <input name="lang" id="thymeleaf" type="checkbox" value="/assets/images/thymeleaf.png">
+                        <input name="lang" id="thymeleaf" class="check" type="checkbox" value="/assets/images/thymeleaf.png">
                         <label for="thymeleaf"><img src="/assets/images/thymeleaf.png" alt="thymeleaf"></label>
-                        <input name="lang" id="dart" type="checkbox" value="/assets/images/dart.png">
+                        <input name="lang" id="dart" class="check" type="checkbox" value="/assets/images/dart.png">
                         <label for="dart"><img src="/assets/images/dart.png" alt="dart"></label>
-                        <input name="lang" id="flutter" type="checkbox" value="/assets/images/flutter.png">
+                        <input name="lang" id="flutter" class="check" type="checkbox" value="/assets/images/flutter.png">
                         <label for="flutter"><img src="/assets/images/flutter.png" alt="flutter"></label>
-                        <input name="lang" id="docker" type="checkbox" value="/assets/images/docker.png">
+                        <input name="lang" id="docker" class="check" type="checkbox" value="/assets/images/docker.png">
                         <label for="docker"><img src="/assets/images/docker.png" alt="docker"></label>
-                        <input name="lang" id="jquery" type="checkbox" value="/assets/images/jquery.png">
+                        <input name="lang" id="jquery" class="check" type="checkbox" value="/assets/images/jquery.png">
                         <label for="jquery"><img src="/assets/images/jquery.png" alt="jquery"></label>
-                        <input name="lang" id="kubernetes" type="checkbox" value="/assets/images/kubernetes.png">
+                        <input name="lang" id="kubernetes" class="check" type="checkbox" value="/assets/images/kubernetes.png">
                         <label for="kubernetes"><img src="/assets/images/kubernetes.png" alt="kubernetes"></label>
-                        <input name="lang" id="react" type="checkbox" value="/assets/images/react.png">
+                        <input name="lang" id="react" class="check" type="checkbox" value="/assets/images/react.png">
                         <label for="react"><img src="/assets/images/react.png" alt="react"></label>
                     </div>
                 </div>
