@@ -1,0 +1,29 @@
+<!--공통적으로 사용되는 CSS나 JS는 이쪽에다가 추가해주세요-->
+<!DOCTYPE>
+<html xmlns:th="http://www.thymeleaf.org">
+    <th:block th:fragment="head">
+        <head>
+            <!-- meta -->
+            <meta charset="UTF-8">
+            <meta name="keyword" content="구름, goorm, 1차 스터디, 3조 삼삼오오, 소개페이지, CRUD실습, 프로젝트">
+            <meta name="description" content="구름(goorm) 풀스택 개발자 성장 과정 1차 스터디 3조 삼삼오오를 소개 페이지">
+            <meta name="author" content="김경규, 문소희, 배진환, 이정원">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <!-- font -->
+            <link rel="preconnect" href="https://fonts.googleapis.com">
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+            <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+            <!-- favicon -->
+            <link rel="icon" th:href="@{/assets/images/favicon.ico}">
+            <!-- css -->
+            <link rel="stylesheet" th:href="@{/assets/css/reset.css}">
+            <link rel="stylesheet" th:href="@{/assets/css/style.css}">
+            <link rel="stylesheet" th:href="@{/assets/css/button.css}">
+            <link rel="stylesheet" th:href="@{/assets/css/layout.css}"><!-- 경로 '/' 누락 수정 -->
+            <link rel="stylesheet" th:href="@{/assets/css/main.css}">
+            <link rel="stylesheet" th:href="@{/assets/css/modal.css}">
+            <link rel="stylesheet" th:href="@{/assets/css/popup.css}">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        </head>
+    </th:block>
+</html>

@@ -1,5 +1,7 @@
 package Goorm.Introduce.Web.member;
 
+import Goorm.Introduce.Domain.FeedBack.FeedBack;
+import Goorm.Introduce.Domain.FireBase.FeedBack.FirebaseFeedBackServiceImpl;
 import Goorm.Introduce.Domain.FireBase.Member.FirebaseMemberServiceImpl;
 import Goorm.Introduce.Domain.Member.Member;
 import lombok.RequiredArgsConstructor;
@@ -10,6 +12,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.List;
+
 /**
  * /modify/**로 들어오는 요청을 처리하는 컨트롤러
  */
@@ -19,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class ModifyController {
 
     private final FirebaseMemberServiceImpl firebaseMemberService;
+    private final FirebaseFeedBackServiceImpl firebaseFeedBackService;
 
     // 멤버 추가 기능
     @PostMapping("/create")
@@ -39,7 +44,9 @@ public class ModifyController {
     @PostMapping("/updated")
     public String updated(@RequestParam String id, Member member, Model model) throws Exception {
         firebaseMemberService.updateMember(member);
+        List<FeedBack> feedBackList = firebaseFeedBackService.getByMemberId(id);
         model.addAttribute("member", member);
+        model.addAttribute("boards", feedBackList);
         return "pages/member";
     }
 }

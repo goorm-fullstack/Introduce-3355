@@ -1,0 +1,24 @@
+.login {
+  display: flex;
+  padding: 120px 0 0;
+  flex-direction: column;
+  align-items : center;
+  justify-content : center;
+}
+
+.login .input_br {
+  margin : 2px;
+}
+
+.login input {
+  width : 500px;
+  height: 50px;
+  margin : 2px;
+  padding: 0 14px;
+}
+
+.login .btn-submit {
+  margin: 10px 2px 2px;
+  width: 500px;
+  height: 50px;
+}

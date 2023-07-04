@@ -3,6 +3,9 @@ package Goorm.Introduce;
 import com.google.auth.oauth2.GoogleCredentials;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.core.io.ClassPathResource;
@@ -16,7 +19,9 @@ import java.io.*;
 public class IntroduceApplication {
 	private static final ResourceLoader resourceLoader = new DefaultResourceLoader();
 	public static final String DATABASE_URL = "https://test-de4c9.firebaseio.com";//추후 연결된 DB변경시 변경
-	public static void main(String[] args) {
+	@Value("firebase.apiKey")
+	private static String jsonString;
+	public static void main(String[] args) throws IOException {
 		Resource resource = new ClassPathResource("Key/testKey.json");
 			try {
 				InputStream input = resource.getInputStream();
