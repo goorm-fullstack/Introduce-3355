@@ -10,7 +10,7 @@ function readImage(input) {
     const reader = new FileReader();
     reader.onload = (e) => {
       preview.src = e.target.result;
-      profile.value = input.value;
+      profile.value = input.value.replace("C:\\fakepath\\", "");
     };
     reader.readAsDataURL(input.files[0]);
   }

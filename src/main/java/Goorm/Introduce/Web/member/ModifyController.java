@@ -43,8 +43,8 @@ public class ModifyController {
     // 멤버 정보 수정 완료 후 수정된 내용 화면에 보여주는 기능
     @PostMapping("/updated")
     public String updated(@RequestParam String id, Member member, Model model) throws Exception {
-        firebaseMemberService.updateMember(member);
         List<FeedBack> feedBackList = firebaseFeedBackService.getByMemberId(id);
+        firebaseMemberService.updateMember(member);
         model.addAttribute("member", member);
         model.addAttribute("boards", feedBackList);
         return "pages/member";

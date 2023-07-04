@@ -169,6 +169,7 @@
   border: 7px solid var(--border-circle);
   border-radius: 100%;
   background: url('../images/ico_profile.png') no-repeat center center;
+  background-size: 100%;
   position: relative;
 }
 

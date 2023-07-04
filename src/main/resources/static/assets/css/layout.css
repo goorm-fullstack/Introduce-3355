@@ -191,6 +191,7 @@ header .hero, header .btn-scroll {
   animation: scrollmove 1s ease-in-out infinite;
   z-index: 1;
   border: 0;
+  color: var(--color-black);
 }
 
 @keyframes scrollmove {
@@ -261,6 +262,7 @@ footer a:hover {
     line-height: 1.4;
     text-align: left;
     padding-left: 48px;
-    color: var(--color-light-black);
+    color: var(--color-gray);
     z-index: 3;
+    height: 40px;
 }

@@ -51,7 +51,7 @@
             <div th:if="${member?.profile} != null" class="member-image" th:style="'background-image:url('+ @{{profileSrc}{profile}(profileSrc=${member?.profileSrc}, profile=${member?.profile})} +');'">
               <a th:href="@{/member/{id}(id=${member?.id})}" class="btn-more type-ico type-block type-circle type-big type-border">자세히 보기</a>
             </div>
-            <p class="member-name" th:text="${member?.name}"><a href="@{/member/{id}(id=${member?.id})}">홍삼이</a></p>
+            <p class="member-name"><a th:href="@{/member/{id}(id=${member?.id})}" th:text="${member?.name}">홍삼이</a></p>
             <p class="member-position"><span class="" th:text="${member?.role}">역할</span> / <span th:text="${member?.favorite}">개발 포지션</span></p>
           </li><!-- 여기까지 조원 정보 등록된 수만큼 반복 -->
           <!-- 조원 목록: loop end -->

@@ -25,7 +25,7 @@ function guestPrev() {
 
 /* 다음 방명록 보기 */
 function guestNext() {
-  if(currentIdx != (slideCount-3)) moveSlide(currentIdx+1);
+  if(currentIdx != (slideCount-3) && slideCount > 3) moveSlide(currentIdx+1);
   else alert('마지막 페이지입니다.');
 }
 

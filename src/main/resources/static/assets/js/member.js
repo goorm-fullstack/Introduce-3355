@@ -5,3 +5,9 @@ function onDelete(id){
         location.href = "/member/delete?id=" + id;
     }
 }
+
+//const img = document.querySelector(".profile-img");
+//
+//window.onload = function replace(){
+//    img.src = img.src.replace("C:%5Cfakepath%5C", "");
+//}
