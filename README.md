@@ -3,7 +3,7 @@
 
 <br />
 
-🖥 [**바로가기(Web)**](https://port-0-introduce3355-private-20zynm2mljnlngk9.sel4.cloudtype.app/) / 📱 [**바로가기(App)**](https://goorm-fullstack.github.io/Introduce3355-App/)
+🖥 [**바로가기(Web)**](https://port-0-introduce3355-private-20zynm2mljnlngk9.sel4.cloudtype.app/) / 📱 [**바로가기(App)**](https://github.com/goorm-fullstack/Introduce3355-App)
 
 <br />
 
