@@ -1,4 +1,3 @@
-
 # 3조 삼삼오오(三三五五)
 ☁ 구름(goorm) 풀스택 개발자 성장 과정 1차 스터디 3️⃣조 삼삼오오를 소개합니다.
 
@@ -9,8 +8,9 @@
 <br />
 
 ## 🔍 프로젝트 개요
-- **개발 목적:** CRUD 실습, 협업 경험 쌓기
+- **개발 목적:** CRUD 실습, 소프트 스킬 향상을 위한 협업 경험 쌓기
 - **개발 기간:** 2023.06.24~2023.06.30(총 7일)
+- **최종 배포:** 2023.07.04
 
 <br />
 
@@ -22,7 +22,7 @@
 | [@WhiteKIM](https://github.com/WhiteKIM) | [@soheetech](https://github.com/soheetech) | [@JinhwanB](https://github.com/JinhwanB) | [@location132](https://github.com/location132) |
 | 조원 | 조원 | 조장 | 조원 |
 | 백엔드 개발자 | 풀스택 개발자 | 백엔드 개발자 | APP(iOS) 개발자 |
-| 방명록, 로그인 구현 | 조원 평가 구현 | 조원 정보 구현 | APP 제작 |
+| 방명록, 로그인 구현 | 조원 피드백 구현 | 조원 정보 구현 | APP 제작 |
 
 <br />
 
@@ -51,22 +51,73 @@
 <br />
 
 ## 📝 화면 구성
-추가 예정
+
+<table>
+	<tr>
+		<th>메인화면</th>
+		<th>조원소개</th>
+		<th>로그인</th>
+	</tr>
+	<tr>
+		<td valign="top"><img src="https://github.com/goorm-fullstack/Introduce3355/assets/121299334/717a75b0-846b-40ff-85ed-582ee328cce9" alt="index"></td>
+		<td valign="top"><img src="https://github.com/goorm-fullstack/Introduce3355/assets/121299334/f604ef20-d9d8-4fbc-a965-febbbd137d4b"></td>
+		<td valign="top"><img src="https://github.com/goorm-fullstack/Introduce3355/assets/121299334/95f61ccd-b47b-4f0b-95e2-3368a8dc8005" alt="login"></td>
+	</tr>
+</table>
 
 <br />
 
 ## ✨ 주요 기능
 - **조원 정보 CRUD:** 관리자 로그인 시 `생성, 수정, 삭제` 가능, 누구나 `읽기` 가능
-- **조원 평가 CRUD:** 관리자 로그인 시 `생성, 수정, 삭제` 가능, 누구나 `읽기` 가능
+- **조원 피드백 CRUD:** 관리자 로그인 시 `생성, 수정, 삭제` 가능, 누구나 `읽기` 가능
 - **방명록 CRUD:** 누구나 `생성, 읽기, 수정, 삭제` 가능, `수정, 삭제` 할 때 생성시 입력한 비밀번호 작성 필요
-- **관리자 로그인:** 미리 DB에 생성한 계정 1개 공유, 조원 정보/평가 `생성, 수정, 삭제` 용도
+- **관리자 로그인:** 미리 DB에 생성한 계정 1개 공유, 조원 정보/피드백 `생성, 수정, 삭제` 용도
 
 <br />
 
 ## 📁 아키텍쳐
 
 ```
-디렉토리 구조 추가 예정
+INTRODUCE3355
+├─gradle
+│  └─wrapper
+└─src
+    ├─main
+    │  ├─java
+    │  │  └─Goorm
+    │  │      └─Introduce
+    │  │          ├─Domain
+    │  │          │  ├─Comment
+    │  │          │  ├─Config
+    │  │          │  ├─FeedBack
+    │  │          │  ├─FireBase
+    │  │          │  │  ├─Comment
+    │  │          │  │  ├─FeedBack
+    │  │          │  │  ├─Member
+    │  │          │  │  └─User
+    │  │          │  ├─Member
+    │  │          │  └─User
+    │  │          └─Web
+    │  │              ├─comment
+    │  │              ├─FeedBack
+    │  │              ├─Interceptor
+    │  │              └─member
+    │  └─resources
+    │      ├─static
+    │      │  └─assets
+    │      │      ├─css
+    │      │      ├─images
+    │      │      └─js
+    │      └─templates
+    │          ├─includes
+    │          └─pages
+    └─test
+        ├─java
+        │  └─Goorm
+        │      └─Introduce
+        └─resources
+            └─templates
+                └─Member
 ```
 
 <br />
@@ -80,20 +131,18 @@
 
 ## 👩🏻‍💻👨🏻‍💻 작업 기록
 
-- `2023.06.24 김경규` firebase 연동 확인
-  + `crud` 기능 구현 예정
-  + `로그인` 기능 확인, 로그인 사용자와 아닌 사용자 헤더 분리 확인, 로그인 기능 구현✅
-- `2023.06.25 김경규`(삭제된 기능은 내용 수정 부탁드려요.)
-  + `조원평가` 등록 기능 구현✅, 페이지 등록 ID를 파이어베이스 레퍼런스 아이디로 사용✅
-  + `조원평가` 코멘트 등록 기능 구현✅, 등록된 코멘트가 내가 등록한 페이지에서만 보여지는지 확인✅
-  + `관리자` 권한없는 사용자가 admin페이지로 들어가지 않도록 인터셉터 구현✅
-  + `DB` 파이어베이스 일부 기능 변경 및 추가
-  + `Board` 모든 게시글 가져오기 기능 추가됨
-  + `Comment` findByBoardIdComment 함수 추가: 게시글에 달린 모든 코멘트를 가져옴
-- `2023.6.26 김경규`
-  + `HTML` : 통합 완료 -> 공통 내용 분리✅
-  + `Comment` : 비밀번호 대조를 제외한 CRUD 완료 ✅
-- `2023.06.28 김경규`
-  + `HTML` : 통합 완료 -> 방명록 CRUD 기능, 로그인 기능 확인 완료✅
-- `2023.06.30 김경규`
-  + 전체적인 통합 완료✅
+- `2023.06.24` 환경 세팅: firebase 연동 확인, 로그인 기능 구현
+- `2023.06.25` 방명록 구현, 파이어베이스 레퍼런스ID 등록, 기능 수정
+- `2023.06.26` 프론트 통합 및 정리(확인용), 방명록 CRUD, 디자인 확정
+- `2023.06.27` 프론트 역할 분담 및 구현: HTML, CSS, JS
+- `2023.06.28` 프론트 통합 및 정리, 방명록 CRUD/로그인 기능 수정
+- `2023.06.29` 조원 정보/피드백 CRUD
+- `2023.06.30` 전체 통합 완료 및 오류 수정
+- `2023.07.04` 배포 완료
+
+<br />
+
+## 🎉 에필로그: TOP5!
+모두 고생 많으셨습니다! 원하는 회사 취업 성공하시길 바랍니다.🤗
+
+![TOP5](https://github.com/goorm-fullstack/Introduce3355/assets/121299334/0730bdc3-df47-4fb4-8896-746c7a74cd07)
