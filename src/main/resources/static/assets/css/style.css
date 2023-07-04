@@ -1,0 +1,160 @@
+/* common */
+
+:root {
+  --bg-white: #fff;
+  --bg-sky: #d6f0ef;
+  /* 방명록, 조원 추천서 */
+  --bg-yellow: #fef0d6;
+  --bg-gray: #f1f2f4;
+  /* 원형 버튼 */
+  --border-circle: #ededed;
+  /* 사각형 버튼 */
+  --border-square: #d0d0d0;
+  /* 폰트색 */
+  --color-black: #111;
+  --color-light-black: #444;
+  --color-gray: #888;
+  --color-green: #5d9361;
+  --color-blue: #1d2089;
+}
+
+::selection {
+  background-color: var(--bg-sky);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.displaynone {
+  display: none !important;
+}
+
+html, body { width: 100%; }
+
+body {
+  min-width: 1100px;
+  font-family: 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+  font-size: 16px;
+  line-height: 1.8;
+  letter-spacing: -0.02em;
+  color: var(--color-black);
+}
+
+a {
+  color: var(--color-black);
+  text-decoration: none;
+}
+
+a, button {
+  transition: .2s ease-in-out;
+}
+
+input, textarea {
+  font-family: 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+  border-color: var(--border-square);
+  font-size: 16px;
+  border-radius: 4px;
+}
+
+textarea {
+  padding: 20px;
+  resize: none;
+  max-width: 100%;
+  border-width: 1px;
+  border-style : solid;
+}
+
+input {
+  border-width: 1px;
+  border-style: solid;
+  border-width: 1px;
+  border-style : solid;
+}
+
+select { /* 2023.06.29 moon 추가 */
+    border-color: var(--border-square);
+    height: 40px;
+    margin: 0 4px 10px 0;
+    padding: 0 8px;
+    font-size: 14px;
+    border-radius: 4px;
+}
+
+
+/* 서브 페이지 index로 이동 영역 */
+.prev-wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+.prev-wrapper .move-back {
+  display: flex;
+}
+.prev-wrapper h3 {
+  font-size: 24px;
+  font-weight: bold;
+  padding-left: 28px;
+  letter-spacing: -0.02em;;
+}
+
+
+
+/* 멤버 정보란 */
+.member-box {
+  margin-top: 120px;
+  position: relative;
+}
+
+/* 멤버 프로필 */
+.member-box .member-profile {
+  position: relative;
+  margin: 0 auto 40px;
+  width: 350px;
+  height: 350px;
+  border-radius: 50%;
+  border: 7px solid #ededed;
+  overflow: hidden;
+}
+
+/* 프로필 사진 */
+.member-box .profile-img {
+  object-fit: cover;
+  box-sizing: border-box;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* 깃허브 이동 버튼 */
+.member-box .member-github {
+  position: relative;
+}
+.member-box .member-github a, 
+.member-github.modify-git {
+  width: 80px;
+  height: 80px;
+  position: absolute;
+  bottom: 60px;
+  left: 50%;
+  margin-left: 87px;
+  border: 7px solid #ededed;
+  border-radius: 50%;
+  background-color: white;
+  text-align: center;
+  line-height: 80px;
+}
+.member-box .member-github a:hover, 
+.member-github.modify-git:hover {
+  border-style: dashed;
+}
+
+.member-box .member-github a i, 
+.member-github.modify-git i {
+  font-size:36px;
+}
+
+.member-github.modify-git {
+  bottom: 30px;
+  cursor: pointer;
+}

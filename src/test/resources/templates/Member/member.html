@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="|${board.name} 소개|">Title</title>
+</head>
+<body>
+    <div>
+        <ul>
+            <li>이름 <span th:text="${board.name}"/></li>
+            <li>역할 <span th:text="${board.role}"/></li>
+            <li>깃허브 주소 <span th:text="${board.github}"/></li>
+            <li>관심 분야 <span th:text="${board.favorite}"/></li>
+            <li>사용가능언어 <span th:text="${board.lang}"/></li>
+        </ul>
+        <p>소개글</p>
+        <textarea th:text="${board.comments}" readonly/>
+    </div>
+</body>
+</html>
