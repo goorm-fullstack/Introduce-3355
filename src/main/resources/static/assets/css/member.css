@@ -121,13 +121,19 @@
 
 /* 역할과 이름 */
 .feedbacks .role-name {
+  display: inline-block;
   font-size: 18px;
   font-weight: bold;
+  margin-bottom: 4px;
 }
+
 /* 날짜 */
 .feedbacks .date {
+  display: inline-block;
   font-size: 14px;
   color: var(--border-square);
+  margin-left: 6px;
+  margin-bottom: 4px;
 }
 
 .feedbacks li {
@@ -170,11 +176,6 @@
   word-break: break-all;
 }
 
-/* 역할과 이름, 날짜 */
-.content div span {
-  line-height: 2;
-  font-size: 16px;
-}
 /* 피드백 수정, 삭제 버튼 */
 .feedbacks .btn-feedback-delete {
   position: absolute;
