@@ -58,6 +58,9 @@
 .short-intro-box p {
   line-height: 2;
   white-space: pre-wrap;
+  border: 7px solid var(--border-circle);
+  border-radius: 20px;
+  padding: 40px;
 }
 
 .short-intro-box,
