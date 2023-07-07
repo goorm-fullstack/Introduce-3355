@@ -56,11 +56,13 @@
 	<tr>
 		<th>메인화면</th>
 		<th>조원소개</th>
+		<th>정보수정</th>
 		<th>로그인</th>
 	</tr>
 	<tr>
 		<td valign="top"><img src="https://github.com/goorm-fullstack/Introduce3355/assets/121299334/717a75b0-846b-40ff-85ed-582ee328cce9" alt="index"></td>
-		<td valign="top"><img src="https://github.com/goorm-fullstack/Introduce3355/assets/121299334/f604ef20-d9d8-4fbc-a965-febbbd137d4b"></td>
+		<td valign="top"><img src="https://github.com/goorm-fullstack/Introduce3355/assets/121299334/f604ef20-d9d8-4fbc-a965-febbbd137d4b" alt="member"></td>
+		<td valign="top"><img src="https://github.com/goorm-fullstack/Introduce3355/assets/121299334/f1fc09c1-3af9-4ba1-b1a3-4a408ffe27c8" alt="modify"></td>
 		<td valign="top"><img src="https://github.com/goorm-fullstack/Introduce3355/assets/121299334/95f61ccd-b47b-4f0b-95e2-3368a8dc8005" alt="login"></td>
 	</tr>
 </table>
