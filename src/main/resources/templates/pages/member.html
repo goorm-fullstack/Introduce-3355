@@ -7,7 +7,7 @@
     <input type="hidden" id="memberId" th:value="${member.id}">
     <section class="wrapper member">
         <article class="member-info"><!-- 조원정보 -->
-            <div class="prev-wrapper"><!-- 상단 버튼 -->
+            <div class="prev-wrapper contents-full"><!-- 상단 버튼 -->
                 <div class="move-back">
                     <a class="btn-previous type-ico type-block type-circle type-middle type-border" href="/"></a>
                     <h3>3조 삼삼오오</h3>
@@ -29,18 +29,18 @@
             <div id="role-position"><!-- 역할과 포지션 -->
                 <span th:text="${member?.getRole()}">역할</span> / <span th:text="${member?.getFavorite()}">포지션</span>
             </div>
-            <div class="short-intro-box"><!-- 자기 소개 -->
+            <div class="short-intro-box contents-full"><!-- 자기 소개 -->
                 <h4>소개</h4>
                 <p th:text="${member?.getShortIntro()}">내용이 없습니다.</p>
             </div>
-            <div class="lang-box"><!-- 사용 언어 -->
+            <div class="lang-box contents-full"><!-- 사용 언어 -->
                 <p>기술</p>
                 <ul class="lang-icons"><!-- 언어 선택한 만큼 이미지 불러오기 -->
                     <li th:each="language : ${member?.getLang()}"><img th:src="@{${language}}" alt="no-image"></li>
                 </ul>
             </div>
         </article>
-        <article class="feedback-box"><!-- 피드백 -->
+        <article class="feedback-box contents-full"><!-- 피드백 -->
             <div class="top"><!-- 피드백 상단 버튼 -->
                 <h4>피드백</h4>
                 <button th:if="${session.isEmpty()}" type="button" onclick="location.href='/login';" class="btn-feed-write type-ico type-square type-block"><i class="fa fa-pencil"></i>피드백 등록하기</button>
